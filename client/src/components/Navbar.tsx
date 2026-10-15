@@ -103,6 +103,7 @@ export function Navbar() {
           <NavLink to="/chat" className={link} onClick={closeAll}>AI Medical Chatbot</NavLink>
           <NavLink to="/emergency" className={link} onClick={closeAll}>Emergency Help</NavLink>
           <NavLink to="/medicines" className={link} onClick={closeAll}>Medicine Library</NavLink>
+          <NavLink to="/symptom-checker" className={link} onClick={closeAll}>Symptom Checker</NavLink>
           <div className="nav-dropdown" ref={moreRef}>
             <button
               type="button"

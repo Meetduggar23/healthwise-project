@@ -30,6 +30,7 @@ export function Footer() {
           <Link to="/faq">Health FAQ</Link>
           <Link to="/visit-prep">Visit Prep</Link>
           <Link to="/medicines">Medicine Library</Link>
+          <Link to="/symptom-checker">Symptom Checker</Link>
           <Link to="/emergency">Emergency Help</Link>
         </div>
         <div className="footer-col">

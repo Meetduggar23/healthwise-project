@@ -10,6 +10,9 @@ import path from "node:path";
 import { calcAge, calcBmi, hydrationGuide } from "../../client/src/lib/healthCalc.js";
 import { MEDICINES, MEDICINE_CATEGORIES } from "../../client/src/data/medicines.js";
 import { MEDICINE_BRIEFS } from "../src/medicineBriefs.js";
+import { BODY_REGIONS, ORGANS } from "../../client/src/data/bodyRegions.js";
+import { triageCheck, checkerContext } from "../../client/src/lib/symptomTriage.js";
+import { BODY_SHAPES } from "../../client/src/components/BodyMap.js";
 
 const PORT = 4101;
 const BASE = `http://127.0.0.1:${PORT}`;
@@ -279,6 +282,48 @@ async function main(): Promise<void> {
     check("library page has search+filters+load-more", /suggest/i.test(medLibSrc) && /chip/i.test(medLibSrc) && /Load More/.test(medLibSrc));
     const medDetSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/MedicineDetail.tsx"), "utf8");
     check("detail page has TOC+refs+disclaimer", /On this page/.test(medDetSrc) && /References/.test(medDetSrc) && /not a prescription/.test(medDetSrc));
+
+    // ---- 10. symptom checker data, shapes, triage ----
+    console.log("\n[10] Symptom checker");
+    check("12 body regions", BODY_REGIONS.length === 12, `got=${BODY_REGIONS.length}`);
+    check("region ids unique", new Set(BODY_REGIONS.map((r) => r.id)).size === BODY_REGIONS.length);
+    check(
+      "regions complete",
+      BODY_REGIONS.every(
+        (r) =>
+          r.symptoms.length >= 4 && r.causes.length >= 3 && r.emergency.length > 0 &&
+          r.specialists.length > 0 && r.tests.length > 0 && r.treatments.length > 0 &&
+          r.selfCare.length > 0 && r.seeDoctor.length > 0 && r.refs.length > 0,
+      ),
+    );
+    check("region refs are https hubs", BODY_REGIONS.every((r) => r.refs.every((x) => /^https:\/\//.test(x.url))));
+    check("related ids valid", BODY_REGIONS.every((r) => r.related.every((id) => BODY_REGIONS.some((x) => x.id === id))));
+    check("no diagnosing language", !BODY_REGIONS.some((r) => /you have |you are diagnosed|will cure|guaranteed/i.test([...r.causes.map((c) => c.detail), ...r.treatments].join(" "))));
+    const regionIds = new Set(BODY_REGIONS.map((r) => r.id));
+    check("every shape maps to a region", BODY_SHAPES.every((s) => regionIds.has(s.regionId)));
+    check("every region selectable", BODY_REGIONS.every((r) => BODY_SHAPES.some((s) => s.regionId === r.id)));
+    check("front+back views covered", BODY_SHAPES.some((s) => s.view === "front") && BODY_SHAPES.some((s) => s.view === "back"));
+    check(
+      "left/right distinguished",
+      ["arm", "hand", "leg", "knee", "foot"].every(
+        (id) => BODY_SHAPES.some((s) => s.regionId === id && s.label.startsWith("Left")) && BODY_SHAPES.some((s) => s.regionId === id && s.label.startsWith("Right")),
+      ),
+    );
+    check("6 organs map to regions", ORGANS.length === 6 && ORGANS.every((o) => regionIds.has(o.regionId)));
+    const tri = (regionId: string, symptoms: string[], severity: number, onset: "sudden" | "gradual") =>
+      triageCheck({ regionId, regionName: regionId, symptoms, severity, onset, duration: "1–3 days" });
+    check("triage: chest pain + breath → emergency", tri("chest", ["Chest pain or pressure", "Difficulty breathing or wheezing"], 8, "sudden").level === "emergency");
+    check("triage: face droop → emergency", tri("head", ["Sudden facial drooping"], 5, "sudden").level === "emergency");
+    check("triage: cold pale leg → emergency", tri("leg", ["Pain", "Cold, pale, or colour change"], 8, "sudden").level === "emergency");
+    check("triage: sudden 10/10 head → emergency", tri("head", ["Headache"], 10, "sudden").level === "emergency");
+    check("triage: high severity → urgent", tri("knee", ["Pain"], 8, "gradual").level === "urgent");
+    check("triage: routine headache", tri("head", ["Headache"], 4, "gradual").level === "routine");
+    check("triage: emergency precedes routine (reasons)", tri("chest", ["Chest pain or pressure"], 5, "gradual").reasons.length > 0);
+    check("checker context carries symptoms", checkerContext({ regionId: "leg", regionName: "Left Leg", symptoms: ["Pain", "Swelling"], severity: 6, onset: "gradual", duration: "1–3 days" }).includes("Left Leg"));
+    const scSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/SymptomChecker.tsx"), "utf8");
+    check("checker page: steps+panel+ask-AI+tel", /Select region/.test(scSrc) && /Check Symptoms/.test(scSrc) && /Ask the AI Assistant/.test(scSrc) && /tel:112/.test(scSrc));
+    const bmSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/BodyMap.tsx"), "utf8");
+    check("bodymap: views+organs+search+a11y", /Front/.test(bmSrc) && /Show organs/.test(bmSrc) && /Find a body part/.test(bmSrc) && /role="button"/.test(bmSrc));
   } finally {
     // On Windows, kill() only stops the shell — terminate the whole tree
     // so no orphan server keeps holding the test port.

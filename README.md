@@ -92,7 +92,16 @@ server — login is validated server-side with bcrypt.
   review dates). Images are generic illustrative Wikimedia Commons photos with
   attribution plus built-in fallback illustrations — never brand packaging. The
   chatbot recognizes medicine names and links to detail pages; detail pages link
+  chatbot recognizes medicine names and links to detail pages; detail pages link
   back via "Ask HealthWise AI". Educational only: no dosages, no prescriptions.
+- **Symptom Checker** (`/symptom-checker`) — separate interactive body explorer:
+  SVG front/back body with 28 individually selectable regions (left/right
+  distinguished), male/female variants, 6 organ shortcuts, region search, and
+  keyboard access. Side panel with symptoms, duration, 1–10 severity, and onset;
+  emergency triage runs first (112/108 banner). Results cover possible causes,
+  self-care, doctor/escalation guidance, specialists, tests, treatments, surgery
+  context, related regions, references, and an "Ask the AI Assistant" handoff
+  carrying the checked symptoms. Educational only — never a diagnosis.
 - **Responsive UI** — desktop, tablet, and mobile layouts with the HealthWise logo.
 
 ## Project structure
@@ -103,11 +112,13 @@ healthwise-demo/
     src/pages/            # Home, Login, BookAppointment, MyAppointments, ChatPage,
                           # Emergency, HealthTools, HealthLibrary, HealthFaq,
                           # VisitPrep, AdminLogin, AdminDashboard,
-                          # MedicineLibrary, MedicineDetail
-    src/components/       # Navbar, Footer, AuthContext, AdminAuthContext, AdminRoute, ChatWidget, useChat, chatMarkdown, MedicineImage, PasswordField
+                          # MedicineLibrary, MedicineDetail, SymptomChecker
+    src/components/       # Navbar, Footer, AuthContext, AdminAuthContext, AdminRoute, ChatWidget, useChat, chatMarkdown, MedicineImage, PasswordField, BodyMap
     src/api/client.ts     # auth + chat + appointments + admin API calls
     src/data/healthContent.ts  # static emergency/library/FAQ/prep content
     src/data/medicines.ts # static medicine catalogue (16 entries, no database)
+    src/data/bodyRegions.ts # static symptom-checker regions (12 entries)
+    src/lib/symptomTriage.ts # pure emergency triage + chatbot context builder
     src/lib/healthCalc.ts # pure BMI/age/hydration functions
   server/                 # Express + TypeScript (no database)
     src/index.ts          # app wiring, session config
