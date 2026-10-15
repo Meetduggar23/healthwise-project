@@ -326,6 +326,18 @@ async function main(): Promise<void> {
     check("checker page: steps+panel+ask-AI+tel", /Select region/.test(scSrc) && /Check Symptoms/.test(scSrc) && /Ask the AI Assistant/.test(scSrc) && /tel:112/.test(scSrc));
     const bmSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/BodyMap.tsx"), "utf8");
     check("bodymap: views+organs+search+a11y", /Front/.test(bmSrc) && /Show organs/.test(bmSrc) && /Find a body part/.test(bmSrc) && /role="button"/.test(bmSrc));
+
+    // ---- 11. full-page chat redesign (static) ----
+    console.log("\n[11] Chat page redesign");
+    const cpSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/ChatPage.tsx"), "utf8");
+    check("welcome heading", cpSrc.includes("How can HealthWise help you today?"));
+    check("4 suggested prompts", ["headache?", "sleep?", "fever symptoms.", "medical help?"].every((s) => cpSrc.includes(s)));
+    check("multiline composer + Enter handling", /textarea/.test(cpSrc) && /shiftKey/.test(cpSrc));
+    check("retry on error", /chat\.retry\(\)/.test(cpSrc) && /Retry/.test(cpSrc));
+    check("composer disclaimer", cpSrc.includes("does not replace professional medical advice"));
+    check("footer hidden on chat route", fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/Footer.tsx"), "utf8").includes('pathname === "/chat"'));
+    check("widget hidden on chat route", fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/ChatWidget.tsx"), "utf8").includes('pathname === "/chat"'));
+    check("retry in chat hook", fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/useChat.ts"), "utf8").includes("const retry"));
   } finally {
     // On Windows, kill() only stops the shell — terminate the whole tree
     // so no orphan server keeps holding the test port.

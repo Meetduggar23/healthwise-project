@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export function Footer() {
+  // The full-page chat manages its own viewport height — no footer there.
+  const { pathname } = useLocation();
+  if (pathname === "/chat") return null;
   return (
     <footer className="footer">
       <div className="footer-inner">

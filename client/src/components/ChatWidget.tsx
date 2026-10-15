@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useChat, type ChatMessage } from "./useChat";
 import { renderChatHtml } from "./chatMarkdown";
 
@@ -53,9 +53,12 @@ export function Messages({ messages, sending }: { messages: ChatMessage[]; sendi
 
 export function ChatWidget() {
   // Free to use without login — no account required to ask health questions.
+  // Hidden on the full chat page itself (the page is the interface there).
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState("");
   const chat = useChat();
+  const { pathname } = useLocation();
+  if (pathname === "/chat") return null;
 
   return (
     <>

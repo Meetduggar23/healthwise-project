@@ -75,14 +75,14 @@ export function useChat() {
   }, []);
 
   const send = useCallback(
-    async (text: string) => {
+    async (text: string, base?: ChatMessage[]) => {
       const content = text.trim();
       if (!content || sending) return;
       setSending(true);
       setError("");
 
       const userMsg: ChatMessage = { id: nextId(), role: "user", content };
-      const newMessages = [...messages, userMsg];
+      const newMessages = [...(base ?? messages), userMsg];
       setMessages(newMessages);
 
       try {
@@ -123,6 +123,15 @@ export function useChat() {
     [messages, sending, activeId],
   );
 
+  /** Re-attempt the last failed user message without duplicating it. */
+  const retry = useCallback(() => {
+    if (sending || messages.length === 0) return;
+    const last = messages[messages.length - 1];
+    if (last.role !== "user") return;
+    setError("");
+    void send(last.content, messages.slice(0, -1));
+  }, [sending, messages, send]);
+
   useEffect(() => {
     writeConversations(readConversations());
   }, []);
@@ -138,5 +147,6 @@ export function useChat() {
     startConversation,
     removeConversation,
     send,
+    retry,
   };
 }
