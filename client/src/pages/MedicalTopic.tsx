@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import {
   SOURCE_URLS,
   displayCategory,
@@ -13,6 +13,10 @@ import { renderChatHtml } from "../components/chatMarkdown";
 
 export function MedicalTopic() {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
+  const isMedicalLibrary = location.pathname.startsWith("/medical-library");
+  const libraryPath = isMedicalLibrary ? "/medical-library" : "/library";
+  const libraryLabel = isMedicalLibrary ? "Medicine Information Library" : "Health Library";
   const [topics, setTopics] = useState<LibTopic[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -55,7 +59,7 @@ export function MedicalTopic() {
           <p className="sub" style={{ textAlign: "center" }}>
             {error || "This entry does not exist in the library."}
           </p>
-          <Link to="/medical-library" className="btn">Back to Medical Library</Link>
+          <Link to={libraryPath} className="btn">Back to {libraryLabel}</Link>
         </div>
       </div>
     );
@@ -67,7 +71,7 @@ export function MedicalTopic() {
 
   return (
     <div className="page">
-      <Link to="/medical-library" className="btn btn-ghost btn-sm" style={{ marginBottom: 14 }}>← Medical Library</Link>
+      <Link to={libraryPath} className="btn btn-ghost btn-sm" style={{ marginBottom: 14 }}>← {libraryLabel}</Link>
 
       <div className="card med-hero">
         <div className="med-hero-img-auto">
@@ -141,7 +145,7 @@ export function MedicalTopic() {
             {related.length > 0 ? (
               <div className="chip-row">
                 {related.map((r) => (
-                  <Link key={r.id} to={`/medical-library/${r.id}`} className="chip-btn">{r.title}</Link>
+                  <Link key={r.id} to={`${libraryPath}/topic/${r.id}`} className="chip-btn">{r.title}</Link>
                 ))}
               </div>
             ) : (

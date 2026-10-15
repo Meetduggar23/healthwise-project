@@ -137,9 +137,14 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
   .nav-drop-btn { width: 100%; justify-content: space-between; }
 }
 .nav-right { margin-left: auto; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.nav-user { color: var(--ink-soft); font-size: 0.92rem; white-space: nowrap; }
+.nav-user { color: var(--ink-soft); font-size: 0.92rem; white-space: nowrap; max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
 .nav-right .btn { white-space: nowrap; }
 .nav-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 1.1rem; cursor: pointer; }
+.nav-toggle:focus-visible, .nav-drop-btn:focus-visible, .nav-links a:focus-visible, .nav-right button:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
 
 /* Home hero */
 .hero {

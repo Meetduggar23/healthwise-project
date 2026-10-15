@@ -265,35 +265,23 @@ export function rememberTopic(id: string) {
 
 import { LIBRARY } from "../data/healthContent";
 
-/** Health Library (curated EN/HI/Hinglish entries) mapped into library topics. */
-const HL_CATEGORY: Record<string, string> = {
-  specialties: "General Health and Preventive Care",
-  tests: "Medical Tests and Diagnostics",
-  "first-aid": "First Aid and Emergency Care",
-  prevention: "General Health and Preventive Care",
-  lifestyle: "General Health and Preventive Care",
-  terms: "General Health and Preventive Care",
-};
-
+/** Convert curated Health Library entries to the shared topic shape. */
 export function healthLibraryTopics(): LibTopic[] {
-  return LIBRARY.flatMap((c) =>
-    c.entries.map((e, i) => {
-      const keys = new Set<string>([
-        ...e.tags,
-        ...e.title.toLowerCase().split(/[^a-z\u0900-\u097f]+/).filter((w) => w.length > 2),
-        ...(e.hinglish ?? "").toLowerCase().split(/[^a-z\u0900-\u097f]+/).filter((w) => w.length > 3),
-      ]);
-      const body = [`**In English:** ${e.en}`]
-        .concat(e.hi ? [`**हिंदी में:** ${e.hi}`] : [])
-        .concat(e.hinglish ? [`**Hinglish mein:** ${e.hinglish}`] : [])
+  return LIBRARY.flatMap((category) =>
+    category.entries.map((entry, index) => {
+      const words = (value: string) => value.toLowerCase().split(/[^a-z\u0900-\u097f]+/).filter((w) => w.length > 2);
+      const keywords = [...new Set([...entry.tags, ...words(entry.title), ...words(entry.en), ...words(entry.hinglish ?? "")])];
+      const body = [`**In English:** ${entry.en}`]
+        .concat(entry.hi ? [`**हिंदी में:** ${entry.hi}`] : [])
+        .concat(entry.hinglish ? [`**Hinglish mein:** ${entry.hinglish}`] : [])
         .join("\n\n");
       return {
-        id: `hl-${c.id}-${i}`,
-        title: e.title,
-        category: HL_CATEGORY[c.id] ?? "General Health and Preventive Care",
-        keywords: [...keys],
+        id: `hl-${category.id}-${index}`,
+        title: entry.title,
+        category: "General Health and Preventive Care",
+        keywords,
         body,
-        sources: [] as string[],
+        sources: [],
       };
     }),
   );
@@ -307,8 +295,7 @@ export async function fetchTopics(): Promise<LibTopic[]> {
   if (!res.ok) throw new Error(`Library unavailable (${res.status}). Please try again.`);
   const data = (await res.json()) as { topics?: LibTopic[] };
   if (!Array.isArray(data.topics)) throw new Error("Library returned an unexpected response.");
-  // Single merged library: chatbot knowledge + curated Health Library entries.
-  cache = [...data.topics, ...healthLibraryTopics()];
+  cache = data.topics;
   return cache;
 }
 

@@ -4,8 +4,9 @@ import { useAuth } from "./AuthContext";
 import { useAdminAuth } from "./AdminAuthContext";
 
 const MORE_LINKS: { to: string; label: string; emergency?: boolean }[] = [
+  { to: "/medicines", label: "Medicine Library" },
   { to: "/emergency", label: "Emergency Help", emergency: true },
-  { to: "/medical-library", label: "Medical Library" },
+  { to: "/library", label: "Health Library" },
   { to: "/tools", label: "Health Tools" },
   { to: "/faq", label: "Health FAQ" },
   { to: "/visit-prep", label: "Visit Prep" },
@@ -41,7 +42,7 @@ export function Navbar() {
     };
   }, []);
 
-  const moreActive = MORE_LINKS.some((l) => location.pathname === l.to);
+  const moreActive = MORE_LINKS.some((l) => location.pathname === l.to || location.pathname.startsWith(`${l.to}/`));
 
   const handleLogout = async () => {
     await logout();
@@ -102,7 +103,7 @@ export function Navbar() {
             </>
           )}
           <NavLink to="/chat" className={link} onClick={closeAll}>AI Medical Chatbot</NavLink>
-          <NavLink to="/medicines" className={link} onClick={closeAll}>Medicine Library</NavLink>
+          <NavLink to="/medical-library" className={link} onClick={closeAll}>Medicine Information Library</NavLink>
           <NavLink to="/symptom-checker" className={link} onClick={closeAll}>Symptom Checker</NavLink>
           <div className="nav-dropdown" ref={moreRef}>
             <button
@@ -110,12 +111,13 @@ export function Navbar() {
               className={`nav-drop-btn${moreActive ? " active" : ""}`}
               aria-haspopup="true"
               aria-expanded={moreOpen}
+              aria-controls="main-more-menu"
               onClick={() => setMoreOpen((o) => !o)}
             >
               More ▾
             </button>
             {moreOpen && (
-              <div className="nav-drop-menu">
+              <div className="nav-drop-menu" id="main-more-menu">
                 {MORE_LINKS.map((l) => (
                   <NavLink
                     key={l.to} to={l.to}

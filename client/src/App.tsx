@@ -16,7 +16,7 @@ import { HealthFaq } from "./pages/HealthFaq";
 import { VisitPrep } from "./pages/VisitPrep";
 import { MedicineLibrary } from "./pages/MedicineLibrary";
 import { MedicineDetail } from "./pages/MedicineDetail";
-import { MedicalLibrary } from "./pages/MedicalLibrary";
+import { HealthLibrary } from "./pages/HealthLibrary";
 import { MedicalTopic } from "./pages/MedicalTopic";
 import { SymptomChecker } from "./pages/SymptomChecker";
 import { AdminLogin } from "./pages/AdminLogin";
@@ -36,13 +36,14 @@ export default function App() {
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/emergency" element={<Emergency />} />
             <Route path="/tools" element={<HealthTools />} />
-            <Route path="/library" element={<Navigate to="/medical-library" replace />} />
+            <Route path="/library" element={<HealthLibrary />} />
+            <Route path="/library/topic/:id" element={<MedicalTopic />} />
+            <Route path="/medical-library" element={<HealthLibrary />} />
+            <Route path="/medical-library/:id" element={<MedicalTopic />} />
             <Route path="/faq" element={<HealthFaq />} />
             <Route path="/visit-prep" element={<VisitPrep />} />
             <Route path="/medicines" element={<MedicineLibrary />} />
             <Route path="/medicines/:id" element={<MedicineDetail />} />
-            <Route path="/medical-library" element={<MedicalLibrary />} />
-            <Route path="/medical-library/:id" element={<MedicalTopic />} />
             <Route path="/symptom-checker" element={<SymptomChecker />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />

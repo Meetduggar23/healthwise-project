@@ -222,10 +222,10 @@ async function main(): Promise<void> {
     const emgSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/data/healthContent.ts"), "utf8");
     check("emergency call button tel:112", emgSrc.includes("tel:112"));
     check("emergency call button tel:108", emgSrc.includes("tel:108"));
-    // Health Library was merged into the Medical Library (single library).
+    // Medical Library was merged into Health Library (single library).
     const appSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/App.tsx"), "utf8");
-    check("old /library redirects to Medical Library", appSrc.includes('path="/library"') && appSrc.includes('to="/medical-library"'));
-    check("duplicate HealthLibrary page removed", !fs.existsSync(path.resolve(process.cwd(), "../client/src/pages/HealthLibrary.tsx")));
+    check("/library is the merged Health Library", appSrc.includes('path="/library"') && appSrc.includes("<HealthLibrary />"));
+    check("medical and health library routes exist", appSrc.includes('path="/medical-library"') && appSrc.includes('path="/library"'));
     const { healthLibraryTopics } = await import("../../client/src/lib/medicalLibrary.js");
     const hlCount = healthLibraryTopics().length;
     check("health entries merged into library", hlCount >= 30, `merged=${hlCount}`);
@@ -371,7 +371,7 @@ async function main(): Promise<void> {
     check("search: no results", searchTopics(libTopics, "zxqwkj blorpt").length === 0);
     const fever = libTopics.find((t) => t.id === "fever");
     check("sections parse", fever !== undefined && parseSections(fever.body).length >= 3 && parseSections(fever.body)[0].heading !== null);
-    const mlSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/MedicalLibrary.tsx"), "utf8");
+    const mlSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/HealthLibrary.tsx"), "utf8");
     check("library home: search+categories+az", /ml-q/.test(mlSrc) && /cat-grid/.test(mlSrc) && /A–Z/.test(mlSrc));
     const mtSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/MedicalTopic.tsx"), "utf8");
     check("topic page: toc+refs+ask-ai", /On this page/.test(mtSrc) && /References and sources/.test(mtSrc) && /Ask HealthWise AI about this topic/.test(mtSrc));
@@ -379,10 +379,11 @@ async function main(): Promise<void> {
     // ---- 13. navbar order + images ----
     console.log("\n[13] Navbar + images");
     const navSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/Navbar.tsx"), "utf8");
-    const order = ["/", "/book", "/appointments", "/chat", "/medicines", "/symptom-checker"];
+    const order = ["/", "/book", "/appointments", "/chat", "/medical-library", "/symptom-checker"];
     const positions = order.map((p) => navSrc.indexOf(`to="${p}"`));
     check("navbar order exact", positions.every((v) => v >= 0) && positions.every((v, i, a) => i === 0 || v > a[i - 1]), positions.join(","));
-    check("emergency first in More", /MORE_LINKS[\s\S]*?to: "\/emergency"[\s\S]*?to: "\/medical-library"/.test(navSrc));
+    check("medicine, emergency, and health library in More", /MORE_LINKS[\s\S]*?to: "\/medicines"[\s\S]*?to: "\/emergency"[\s\S]*?to: "\/library"/.test(navSrc));
+    check("medical library and symptoms stay in main nav", /to="\/medical-library"/.test(navSrc) && /to="\/symptom-checker"/.test(navSrc) && !/MORE_LINKS[\s\S]*?to: "\/symptom-checker"/.test(navSrc));
     check("emergency styled urgent", navSrc.includes("emg-link"));
     check("old emergency direct link removed", !/\/emergency" className=\{link\} onClick=\{closeAll\}>Emergency Help/.test(navSrc));
     const { CATEGORY_IMAGES } = await import("../../client/src/lib/medicalLibrary.js");
