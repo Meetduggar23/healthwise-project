@@ -208,6 +208,47 @@ check("reply names medicine + library path", medReply.includes("Cetirizine") && 
 check("reply has disclaimer", medReply.includes("not a doctor"));
 check("emergency beats medicine match", fallbackReply("severe chest pain after taking ibuprofen").includes("112") && isEmergency("severe chest pain after taking ibuprofen"));
 
+// ---------- 12. Digestive expansion + everyday-symptom gaps ----------
+console.log("\n[12] Digestive expansion + symptom gaps");
+const digestCases: [string, string, string][] = [
+  ["pet dard", "Mere pet mein dard ho raha hai.", "abdominal-pain-guide"],
+  ["after eating", "My stomach hurts after eating.", "abdominal-pain-guide"],
+  ["after eating Hinglish", "Khaane ke baad pet mein dard hota hai.", "abdominal-pain-guide"],
+  ["right side", "Pet ke right side mein bahut dard hai.", "abdominal-pain-guide"],
+  ["gas bloating", "I have gas and bloating.", "stomach"],
+  ["kabz", "Mujhe kabz hai.", "constipation-kabz"],
+  ["loose motions", "I have loose motions and feel dizzy.", "stomach"],
+  ["dizzy with motions", "I have loose motions and feel dizzy.", "body-ache-weakness"],
+  ["pair dard sujan", "Mere pair mein dard aur sujan hai.", "leg-pain-swelling"],
+  ["hair fall EN", "My hair is falling out.", "hair-alopecia-loss"],
+  ["peshab jalan", "Peshab karte waqt jalan hoti hai.", "uti"],
+  ["hichki", "Mujhe baar baar hichki aati hai.", "hiccups"],
+  ["edi dard", "Meri edi mein bahut dard hai subah.", "foot-heel-ankle"],
+  ["nakhun", "Mere nakhun peele ho rahe hain.", "nail-changes"],
+  ["gala dard", "Mere gale mein dard hai, nigalne me dikkat.", "ent-sinus-tonsil-nosebleed"],
+  ["munh sukhna", "Mera munh baar baar sukhta hai.", "dental"],
+  ["foda", "Haath par foda nikal aaya hai.", "skin-infection-wound-cancer"],
+  ["sir ghoom", "Sir ghoom raha hai, kamzori lag rahi hai.", "body-ache-weakness"],
+  ["khali pet", "Khali pet dard hota hai subah.", "abdominal-pain-guide"],
+  ["ulti dast", "Bachche ko ulti aur dast ho rahe hain.", "nausea-vomiting-diarrhoea"],
+];
+for (const [name, q, expected] of digestCases) {
+  check(`digest:${name}`, ids(q).includes(expected), `query="${q}" got=[${ids(q).join(",")}] want ${expected}`);
+}
+check("chest emergency wins", isEmergency("I have chest pain and difficulty breathing."));
+check(
+  "chest emergency reply",
+  fallbackReply("I have chest pain and difficulty breathing.").includes("112"),
+);
+check(
+  "abdominal guide warns location limits",
+  (MEDICAL_KNOWLEDGE.find((t) => t.id === "abdominal-pain-guide")?.body ?? "").includes("cannot reliably"),
+);
+check(
+  "no antibiotic advice for routine upset",
+  (MEDICAL_KNOWLEDGE.find((t) => t.id === "stomach")?.body ?? "").includes("Avoid self-medicating with antibiotics"),
+);
+
 // ---------- Summary ----------
 console.log(`\n==== ${passed} passed, ${failed} failed, ${MEDICAL_KNOWLEDGE.length} topics total ====`);
 if (failures.length > 0) {

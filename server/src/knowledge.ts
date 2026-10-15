@@ -408,7 +408,7 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
   },
   {
     id: "eye-health",
-    keywords: ["eye", "eyes", "vision", "aankh", "red eyes", "eye itching", "conjunctivitis", "eye strain", "dry eyes", "watery eyes"],
+    keywords: ["eye", "eyes", "vision", "aankh", "red eyes", "eye itching", "conjunctivitis", "eye strain", "screen time", "mobile aankh", "computer aankh", "dry eyes", "watery eyes"],
     title: "Eye health and strain",
     body: `**Simple explanation:** Redness, itching, and tired eyes are often caused by screen strain, dryness, dust, or mild conjunctivitis (pink eye).
 
@@ -422,7 +422,7 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
   },
   {
     id: "dental",
-    keywords: ["tooth", "teeth", "toothache", "daant", "gum bleeding", "cavity", "mouth ulcer", "bad breath", "tooth pain"],
+    keywords: ["tooth", "teeth", "toothache", "daant", "gum bleeding", "cavity", "mouth ulcer", "munh ke chhale", "dry mouth", "munh sukhna", "bad breath", "tooth pain"],
     title: "Teeth and gum basics",
     body: `**Simple explanation:** Most tooth problems start as decay (cavities) or gum inflammation from plaque that isn't cleaned away.
 
@@ -529,7 +529,7 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
   },
   {
     id: "uti",
-    keywords: ["uti", "urine infection", "burning urination", "frequent urination", "peshab jalan", "peshab me jalan", "jalan peshab", "urine pain"],
+    keywords: ["uti", "urine infection", "burning urination", "frequent urination", "peshab jalan", "peshab me jalan", "peshab karte waqt jalan", "jalan peshab", "peshab me khoon", "urine pain"],
     title: "Urinary tract infection (UTI) basics",
     body: `**Simple explanation:** A UTI is usually a bacterial infection of the urinary tract, causing burning while urinating, frequent urge to urinate, or cloudy urine. It is more common in women.
 
@@ -819,7 +819,7 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
   },
   {
     id: "cancer-basics-warnings",
-    keywords: ["cancer", "kainsar", "कैंसर", "tumor", "tumour", "gath", "ganth", "cancer kaise hota", "cancer lakshan", "vajan kam bina wajah", "ghav na bhare", "nigalne me dikkat", "aawaz baithi"],
+    keywords: ["cancer", "kainsar", "कैंसर", "tumor", "tumour", "gath", "ganth", "cancer kaise hota", "cancer lakshan", "vajan kam bina wajah", "ghav na bhare", "nigalne me dikkat", "gala baithna", "awaz baithi", "aawaz baithi", "hoarse voice"],
     title: "How cancer develops and warning signs",
     category: "Cancer Awareness and Prevention",
     sources: ["World Health Organization", "MedlinePlus"],
@@ -883,7 +883,7 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
   },
   {
     id: "ulcer-gerd-reflux",
-    keywords: ["ulcer", "alsar", "pet me ghav", "gerd", "reflux", "khatti Dakar", "seene jalan", "heartburn", "acid upar", "h pylori", "dard bhukh par"],
+    keywords: ["ulcer", "alsar", "pet me ghav", "gerd", "reflux", "acid reflux", "khatti Dakar", "seene jalan", "seene mein jalan", "pet mein jalan", "pet me jalan", "heartburn", "acid upar", "h pylori", "dard bhukh par"],
     title: "Peptic ulcers and GERD (acid reflux)",
     category: "Digestive and Intestinal Diseases",
     sources: ["MedlinePlus", "National Health Service (NHS)"],
@@ -1067,7 +1067,7 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
   },
   {
     id: "ent-sinus-tonsil-nosebleed",
-    keywords: ["sinus", "sinusitis", "naak band", "allergic rhinitis", "chheenk allergy", "tonsil", "gala sujan tonsil", "naak khoon", "nakseer", "nosebleed"],
+    keywords: ["sinus", "sinusitis", "naak band", "allergic rhinitis", "chheenk allergy", "tonsil", "gala sujan tonsil", "gala dard", "gale mein dard", "gale me dard", "gala kharab", "gala baithna", "sore throat tonsil", "nigalne me dard", "nigalne me dikkat", "naak khoon", "naak se khoon", "nakseer", "nosebleed"],
     title: "Sinusitis, allergic rhinitis, tonsillitis and nosebleeds",
     category: "Ear, Nose and Throat Health",
     sources: ["MedlinePlus", "National Health Service (NHS)"],
@@ -1237,7 +1237,7 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
   },
   {
     id: "hair-alopecia-loss",
-    keywords: ["baal jhad", "baal", "jhad", "jhadna", "hair fall", "hairfall", "baldness", "ganjapan", "alopecia", "takla", "dandruff severe", "telogen", "patch hair loss", "daadi baal jhad"],
+    keywords: ["baal jhad", "baal", "jhad", "jhadna", "baal girna", "hair", "hair fall", "hairfall", "hair loss", "hair falling", "losing hair", "baldness", "ganjapan", "alopecia", "takla", "dandruff severe", "telogen", "patch hair loss", "daadi baal jhad"],
     title: "Hair loss patterns and alopecia",
     category: "Dermatology and Hair Disorders",
     sources: ["MedlinePlus", "National Health Service (NHS)"],
@@ -1251,7 +1251,7 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
   },
   {
     id: "skin-infection-wound-cancer",
-    keywords: ["skin infection", "cellulitis", "twacha laal garam", "ghav na bhare", "diabetic wound", "mole change", "mole", "changing shape", "til badalna", "til badal", "skin cancer lakshan", "dermatologist kab"],
+    keywords: ["skin infection", "cellulitis", "twacha laal garam", "ghav na bhare", "foda", "phoda", "boil", "diabetic wound", "mole change", "mole", "changing shape", "til badalna", "til badal", "skin cancer lakshan", "dermatologist kab"],
     title: "Skin infections, slow wounds and skin-cancer signs",
     category: "Dermatology and Hair Disorders",
     sources: ["MedlinePlus", "Centers for Disease Control and Prevention (CDC)"],
@@ -1403,6 +1403,184 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
 
 **When to seek care:** Unexplained rapid loss/gain, chest pain with exercise, or eating-disorder patterns — prompt review. **Misconception:** "Skipping meals speeds loss" — it usually backfires into overeating and nutrient gaps. **Limitation:** Personal calorie/medicine plans need a clinician or dietitian.`,
   },
+  {
+    id: "abdominal-pain-guide",
+    keywords: ["stomach pain", "abdominal pain", "pet dard", "pet mein dard", "pet me dard", "pet mein gas", "pet me jalan", "pet mein jalan", "upper abdomen pain", "lower abdomen pain", "upar pet dard", "neeche pet dard", "right side pet dard", "left side pet dard", "right side", "left side", "dayen taraf dard", "bayen taraf dard", "navel pain", "nabhi dard", "nabhi ke paas dard", "khaane ke baad dard", "khane ke baad pet dard", "after eating", "pain after eating", "khali pet dard", "empty stomach pain", "bhukh par dard", "cramp", "marod", "pet me marod", "recurring stomach pain", "baaram baar pet dard", "पेट दर्द", "पेट में दर्द", "नाभि दर्द", "abdominal cramps", "side pain stomach"],
+    title: "Abdominal pain — location and timing guide",
+    category: "Digestive and Intestinal Diseases",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** "Pet dard" has dozens of causes, and pain location alone cannot reliably identify the cause — the same spot can mean different things in different people. Timing (after eating vs empty stomach), associated symptoms, and examination matter more than location.
+
+**Common patterns (possibilities, not diagnoses):** Upper pain after meals suggests acidity or gallbladder-type pain; empty-stomach gnawing pain suggests ulcer-type pain; lower cramps with loose motions suggest gut infection or IBS-type sensitivity; right-sided pain with fever may involve gallbladder, appendix, or kidney; left-sided pain may involve constipation or diverticular causes; pain around the navel is common with gas, early appendicitis, or small-bowel irritation.
+
+**Useful questions to consider:** Where exactly is it — upper, lower, right, left, or near the navel? After eating or on an empty stomach? With fever, vomiting, diarrhoea, burning urination, or missed periods? How long, and is it getting worse?
+
+**What you can do:** Rest the stomach with light meals and clean water; avoid alcohol and very spicy food; track location, timing, and associated symptoms for the doctor.
+
+**What to avoid:** Do not label every pain as "gas" — gallstones, appendicitis, kidney stones, UTIs, ulcers, and menstrual causes all begin as ordinary stomach pain. Avoid self-started antibiotics and strong painkillers that mask symptoms.
+
+**When to see a doctor:** Pain beyond 2–3 days, recurring episodes, unexplained weight loss, persistent vomiting, blood in stool or vomit, burning urination with pain, or pain with missed periods — related topics: gallstones, kidney stones, UTI, menstrual health, ulcers and reflux.
+
+**Emergency — call 112:** Sudden severe pain with a rigid/hard belly, vomiting blood or black stools with weakness, high fever with worsening pain, or fainting. **Specialist:** General Physician first; Gastroenterologist or Surgeon if referred.`,
+  },
+  {
+    id: "constipation-kabz",
+    keywords: ["constipation", "kabz", "kabj", "kabaz", "qabz", "painful bowel motion", "potty me dard", "latrine me zor", "stool hard", "sakht potty", "potty nahi aati", "bowel not clearing", "pet saaf nahi", "कब्ज", "fissure constipation", "piles constipation"],
+    title: "Constipation (kabz) and painful bowel movements",
+    category: "Digestive and Intestinal Diseases",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Kabz means hard, infrequent, or incomplete bowel movements — often from low fibre, too little water, inactivity, ignoring the urge, or medicines like iron and some painkillers.
+
+**Common symptoms:** Straining, hard lumpy stools, feeling of incomplete clearing, bloating, and sometimes pain or slight bleeding from piles or fissures.
+
+**Useful questions:** How many days between motions? Are stools hard or painful? Any blood, weight loss, or family history of bowel disease? Which medicines and supplements are you taking?
+
+**What you can do:** Fibre daily (vegetables, fruits, whole grains, isabgol as labelled), plenty of water, daily walks, and a fixed unhurried toilet routine — do not strain or sit long with a phone.
+
+**What to avoid:** Habitual strong laxatives without advice — the bowel can become dependent. Do not ignore rectal bleeding as "just piles".
+
+**When to see a doctor:** Blood in stool, black stools, unexplained weight loss, constipation alternating with diarrhoea, severe pain, or no relief after 2–3 weeks of lifestyle steps — related topics: piles and fissure, IBS and IBD.
+
+**Emergency — call 112:** Complete inability to pass stool or gas with vomiting and a swollen painful belly. **Specialist:** General Physician; Gastroenterologist or Surgeon if referred.`,
+  },
+  {
+    id: "nausea-vomiting-diarrhoea",
+    keywords: ["nausea", "vomiting", "vomit", "ulti", "ulti aana", "jee michlana", "matli", "diarrhoea", "diarrhea", "dast", "loose motions", "motion lagna", "potty patli", "dehydration", "paani ki kami", "kamzori dast", "उल्टी", "दस्त", "food upset vomiting", "stomach flu", "motion sickness ulti"],
+    title: "Nausea, vomiting, diarrhoea and dehydration",
+    category: "Digestive and Intestinal Diseases",
+    sources: ["World Health Organization", "Centers for Disease Control and Prevention (CDC)"],
+    body: `**Simple explanation:** Ulti and dast are the gut's way of expelling irritants — usually foodborne infection, stomach flu, overeating, travel, pregnancy, or medicines. The main danger is dehydration (paani ki kami), not the motions themselves.
+
+**Common symptoms:** Nausea (jee michlana), vomiting, watery motions, cramps, thirst, dry mouth, dizziness, and very little dark urine when dehydrated.
+
+**Useful questions:** How many motions/vomits in 24 hours? Any blood, high fever, or severe pain? Can fluids be kept down? Who else is ill — pregnancy, infants, or elders involved?
+
+**What you can do:** Small frequent sips of ORS and clean fluids; continue light feeding (children especially); rest; handwashing and clean water to stop spread.
+
+**What to avoid:** Do not stop all food and water for long; avoid self-started antibiotics and anti-diarrhoeal overuse without advice — most episodes are viral and pass in 1–3 days.
+
+**When to see a doctor:** Blood in stool or vomit, high fever, severe pain, no urine for many hours, dizziness on standing, or illness beyond 3 days — related topics: food poisoning, UTI (vomiting with burning urination), pregnancy.
+
+**Emergency — call 112:** Signs of severe dehydration (confusion, fainting, sunken eyes, no urine), vomiting blood, or black stools with weakness. **Specialist:** General Physician; Pediatrician for young children.`,
+  },
+  {
+    id: "body-ache-weakness",
+    keywords: ["body pain", "body ache", "badan dard", "shareer dard", "muscle ache", "weakness", "kamzori", "kamjori", "thakan", "fatigue weakness", "dizzy", "dizziness", "sir ghoom raha hai", "chakkar aana", "ghoomna", "chills", "thartharahat", "sweating", "paseena bukhar", "loss of appetite", "bhukh na lagna", "bhook kam", "weight loss", "vajan kam", "weight gain", "vajan badh", "swelling face", "chehra sujan", "haath pair sujan", "swollen ankles", "itching no rash", "khujli bina daane", "चक्कर", "कमजोरी", "बदन दर्द", "fever body pain", "bukhar badan dard"],
+    title: "Body aches, weakness, dizziness and general symptoms",
+    category: "General Health",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Badan dard with kamzori, chakkar, chills, or appetite loss usually accompanies viral fever, poor sleep, dehydration, low food intake, anaemia, or thyroid and sugar problems — rarely one single cause.
+
+**Common symptoms:** Aching limbs, tiredness, light-headedness on standing, chills with sweating, reduced appetite, and sometimes face/hand/foot swelling or itching without rash.
+
+**Useful questions:** With fever or recent infection? How is sleep, water, and food intake? Any new medicines? Pale skin, hair fall, breathlessness (anaemia clues)? Increased thirst/urination (sugar clues)? Dark urine, pale stools, or swelling (liver/kidney clues)?
+
+**What you can do:** Rest, fluids, regular light meals, and recovery time after infections; check BP, sugar, and haemoglobin when fatigue persists.
+
+**What to avoid:** Do not push through faintness — sit or lie down; avoid energy tonics or iron pills without testing; do not blame every ache on "weakness" while missing fever, swelling, or weight change.
+
+**When to see a doctor:** Fainting, chest pain, breathlessness at rest, persistent swelling, unexplained weight loss, itching for weeks without rash, or fatigue beyond 2–3 weeks — related topics: fever, anaemia and B12, thyroid, diabetes (HbA1c), kidney disease, liver health.
+
+**Emergency — call 112:** Fainting with injury, chest pain, severe breathlessness, or sudden one-sided weakness. **Specialist:** General Physician first.`,
+  },
+  {
+    id: "hiccups",
+    keywords: ["hiccup", "hiccups", "hichki", "hicki", "hiccup again", "hichki ruk nahi", "हिचकी", "persistent hiccups", "hichki ilaj"],
+    title: "Hiccups and persistent hiccups",
+    category: "General Health",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Hichki are sudden diaphragm spasms — usually triggered by eating fast, fizzy drinks, excitement, or a full stomach — and most stop on their own within minutes.
+
+**Common pattern:** Rhythmic "hic" sound with mild chest or throat jerks; harmless when brief and occasional.
+
+**What you can do:** Slow breathing, sipping cold water, or briefly holding the breath may help; eat slowly and avoid overeating and excess fizz.
+
+**What to avoid:** Fright tricks and unproven forceful methods; do not ignore hiccups that truly will not stop.
+
+**When to see a doctor:** Hiccups lasting beyond 48 hours, returning for weeks, or coming with vomiting, weight loss, nerve symptoms, or heavy alcohol/medicine use — these need evaluation, not home tricks.
+
+**Emergency — call 112:** Hiccups with chest pain, breathlessness, slurred speech, or weakness (possible stroke/heart signs). **Specialist:** General Physician; Neurologist or Gastroenterologist if referred.`,
+  },
+  {
+    id: "foot-heel-ankle",
+    keywords: ["foot pain", "heel pain", "edi", "edi dard", "edi mein dard", "edi me dard", "aedi dard", "aedi mein dard", "aedi", "heel spur", "plantar", "ankle pain", "takhna dard", "takhna moch", "ankle sprain", "flat feet", "chapta pair", "foot swelling", "pair sujan", "corn foot", "gath pair", "एड़ी दर्द", "diabetic foot pain"],
+    title: "Foot, heel and ankle pain",
+    category: "Orthopedics and Rehabilitation",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Heel pain on first morning steps often means plantar fascia irritation; ankle pain after twisting means sprain; persistent swelling, numbness, or sores point to circulation, nerve, or diabetes causes.
+
+**Common symptoms:** Heel pain on stepping down, ankle swelling after a twist, burning or numbness in the feet, corns from tight footwear, and slow-healing foot sores in diabetes.
+
+**Useful questions:** After a twist or overuse? Morning-start pain or all-day pain? Numbness, colour change, or diabetes? What footwear is used daily?
+
+**What you can do:** Rest the painful foot, ice wrapped in cloth for fresh sprains, calf stretches for heel pain, supportive footwear, and daily foot checks if diabetic.
+
+**What to avoid:** Walking barefoot with diabetes; tight or high-heeled daily footwear; ignoring a foot sore that does not heal.
+
+**When to see a doctor:** Inability to bear weight, deformity, numbness or colour change, sores beyond a week (especially diabetes), or pain beyond 2–3 weeks — related topics: sports injuries, physiotherapy, diabetes.
+
+**Emergency — call 112:** Severe injury with deformity or a cold/pale foot, or diabetic foot with spreading redness and fever. **Specialist:** Orthopedic; Endocrinologist for diabetic feet.`,
+  },
+  {
+    id: "cramps-strains",
+    keywords: ["muscle cramp", "cramps", "nas chadhna", "nas chadna", "calf cramp", "night cramps", "raat me nas", "muscle strain", "nas khinchna", "sprain", "moch", "wrist pain", "kalai dard", "elbow pain", "kohni dard", "tennis elbow", "ankle twist", "मोच", "नस चढ़ना", "strain vs sprain"],
+    title: "Muscle cramps, strains and sprains",
+    category: "Orthopedics and Rehabilitation",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Cramps (nas chadhna) are sudden painful muscle contractions — often dehydration, overuse, or low salts. Strains injure muscle/tendon; sprains injure ligaments around joints (wrist/kalai, elbow/kohni, ankle/takhna).
+
+**Common symptoms:** Sudden calf or foot cramps, especially at night; strain pain that worsens with use; sprain swelling and bruising after a twist.
+
+**Useful questions:** During exercise, at night, or after new medicines (water tablets, cholesterol drugs)? Swelling, bruising, deformity, or numbness after injury?
+
+**What you can do:** Gently stretch the cramped muscle and hydrate; for fresh sprains use rest, ice wrapped in cloth, light compression, and elevation; resume movement gradually.
+
+**What to avoid:** Heat, alcohol massage, or forceful stretching in the first 48 hours of a fresh injury; repeatedly "cracking" a painful joint.
+
+**When to see a doctor:** Frequent severe cramps, cramps with weakness or dark urine, sprains that cannot bear weight, deformity, or numb/cold limbs — related topics: sports injuries, physiotherapy, first aid.
+
+**Emergency — call 112:** Deformed joint, inability to move or bear weight, or numb/cold limb after injury. **Specialist:** General Physician or Orthopedic; Physiotherapist for recovery.`,
+  },
+  {
+    id: "leg-pain-swelling",
+    keywords: ["leg pain", "pair dard", "pair mein dard", "pairon me dard", "taang dard", "taango me dard", "tang dard", "leg swelling", "pair sujan", "pairon me sujan", "taang sujan", "calf pain", "pindli dard", "one leg swelling", "ek pair sujan", "leg cramp walking", "chalne par dard", "पैर दर्द", "पैरों में सूजन", "sciatica leg", "kamar se pair dard"],
+    title: "Leg pain and swelling (pair dard aur sujan)",
+    category: "Orthopedics and Rehabilitation",
+    sources: ["MedlinePlus", "Centers for Disease Control and Prevention (CDC)"],
+    body: `**Simple explanation:** Pair dard with sujan can come from muscles, veins, nerves (sciatica from the back), joints, or circulation — one-sided sudden swelling is the pattern doctors take most seriously.
+
+**Common symptoms:** Aching calves or thighs, swelling around ankles, cramps on walking, numbness travelling from the back, or visible veins.
+
+**Useful questions:** One leg or both? Sudden or gradual? With chest pain or breathlessness? After long travel, surgery, or bed rest? With diabetes, BP, or smoking history?
+
+**What you can do:** Compare both legs; move regularly and avoid long sitting; elevate swollen legs; note timing and triggers for the doctor.
+
+**What to avoid:** Do not massage a suddenly swollen painful leg hard, and do not dismiss one-sided swelling as ordinary tiredness — clots need scans, not massage.
+
+**When to see a doctor:** One-sided swelling, redness, or warmth; pain affecting walking for weeks; numbness or weakness; swelling with breathlessness — related topics: blood clots and DVT, arthritis, sports injuries, back pain and sciatica.
+
+**Emergency — call 112:** Suddenly hugely swollen painful leg, especially with chest pain or breathlessness (possible embolism); cold, pale, numb limb; new inability to move the leg. **Specialist:** General Physician first; Vascular or Orthopedic as referred.`,
+  },
+  {
+    id: "nail-changes",
+    keywords: ["nail", "nails", "nakhun", "naakhun", "nakhun safed", "white spots nails", "yellow nails", "peele nakhun", "thick nails", "spoon nails", "chammach nakhun", "nail fungus", "nakhun fungus", "clubbing nails", "dark line nail", "नाखून", "brittle nails", "nakhun tootna"],
+    title: "Nail changes and what they can signal",
+    category: "Dermatology and Hair Disorders",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Nails reflect general health slowly — most white spots are minor knocks, but persistent colour, shape, or thickness changes deserve attention because nails grow slowly and show months-old changes.
+
+**Common patterns (possibilities, not diagnoses):** White spots (usually minor trauma); yellow thick crumbly nails (often fungal); spoon-shaped nails (possible iron deficiency); pitting (psoriasis/eczema links); bluish nails (circulation clues); a new dark streak that widens (needs prompt skin review).
+
+**Useful questions:** Since when — weeks or months? One nail or many? With hair fall, fatigue, itching, or skin patches? Any injury, tight shoes, or new medicines?
+
+**What you can do:** Keep nails short, clean, and dry; avoid harsh chemicals and picking; wear breathable footwear; photograph changes monthly to track.
+
+**What to avoid:** Scraping or digging under nails aggressively; covering a worsening dark streak with polish instead of showing a doctor; sharing nail tools during active infection.
+
+**When to see a doctor:** Dark streaks, nail lifting with pain or pus, all nails suddenly changing, or nail changes with fatigue, hair fall, or weight change — related topics: fungal skin infections, psoriasis, anaemia and B12.
+
+**Emergency:** Rarely an emergency — but a crushed bleeding nail with deformity, or rapidly spreading redness with fever, needs urgent care. **Specialist:** Dermatologist; General Physician for deficiency workup.`,
+  },
 ];
 
 const EMERGENCY_KEYWORDS = MEDICAL_KNOWLEDGE.find((t) => t.id === "emergency")!.keywords;
@@ -1474,6 +1652,7 @@ const STOPWORDS = new Set([
   "par", "per", "ye", "yeh", "yah", "woh", "vo", "aap", "tum", "tera", "mera",
   "meri", "mere", "mujhe", "mujhko", "hota", "hoti", "hote", "raha", "rahi",
   "rahe", "gaya", "gayi", "karta", "karte", "the", "a", "an", "is", "are",
+  "subah", "subha", "savere", "morning", "evening", "afternoon", "night", "raat",
   "what", "does", "do", "mean", "means", "how", "why", "when", "which", "tell",
   "about", "problem", "problems", "issue", "disease", "health", "doctor",
   "report", "test", "please", "batao", "bataye", "jankari",

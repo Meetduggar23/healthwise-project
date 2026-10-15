@@ -5,7 +5,6 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AdminRoute } from "./components/AdminRoute";
-import { ChatWidget } from "./components/ChatWidget";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { BookAppointment } from "./pages/BookAppointment";
@@ -47,7 +46,6 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           <Footer />
-          <ChatWidget />
         </BrowserRouter>
       </AdminAuthProvider>
     </AuthProvider>

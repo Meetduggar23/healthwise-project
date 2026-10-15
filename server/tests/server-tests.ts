@@ -336,7 +336,7 @@ async function main(): Promise<void> {
     check("retry on error", /chat\.retry\(\)/.test(cpSrc) && /Retry/.test(cpSrc));
     check("composer disclaimer", cpSrc.includes("does not replace professional medical advice"));
     check("footer hidden on chat route", fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/Footer.tsx"), "utf8").includes('pathname === "/chat"'));
-    check("widget hidden on chat route", fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/ChatWidget.tsx"), "utf8").includes('pathname === "/chat"'));
+    check("floating chat widget fully removed", !fs.existsSync(path.resolve(process.cwd(), "../client/src/components/ChatWidget.tsx")) && !fs.readFileSync(path.resolve(process.cwd(), "../client/src/App.tsx"), "utf8").includes("ChatWidget") && !fs.readFileSync(path.resolve(process.cwd(), "../client/src/styles.css"), "utf8").includes("chat-fab"));
     check("retry in chat hook", fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/useChat.ts"), "utf8").includes("const retry"));
   } finally {
     // On Windows, kill() only stops the shell — terminate the whole tree
