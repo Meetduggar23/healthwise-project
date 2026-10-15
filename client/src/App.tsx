@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./components/AuthContext";
 import { AdminAuthProvider } from "./components/AdminAuthContext";
 import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AdminRoute } from "./components/AdminRoute";
 import { ChatWidget } from "./components/ChatWidget";
@@ -39,6 +40,7 @@ export default function App() {
             <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <Footer />
           <ChatWidget />
         </BrowserRouter>
       </AdminAuthProvider>

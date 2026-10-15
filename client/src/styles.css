@@ -101,13 +101,22 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
 .nav-drop-btn:hover { background: #f0f3f7; color: var(--ink); }
 .nav-drop-btn.active { background: var(--brand-soft); color: var(--brand-dark); font-weight: 700; }
 .nav-drop-menu {
-  position: absolute; top: calc(100% + 8px); left: 0; z-index: 100;
+  position: absolute; top: calc(100% + 8px); right: 0; z-index: 100;
   min-width: 210px; background: #fff; border: 1px solid var(--line);
   border-radius: 12px; box-shadow: var(--shadow); padding: 6px;
   display: flex; flex-direction: column;
 }
 .nav-drop-menu a { display: block; padding: 10px 14px; border-radius: 8px; }
-@media (max-width: 860px) {
+/* Collapse the navbar earlier (tablets): 6 links no longer fit side-by-side. */
+@media (max-width: 1020px) {
+  .nav-links {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: #fff; flex-direction: column; padding: 10px 20px 16px; border-bottom: 1px solid var(--line);
+  }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: block; margin-left: auto; }
+  .nav-right { margin-left: 0; }
+  .navbar .nav-inner { position: relative; flex-wrap: wrap; }
   .nav-drop-menu {
     position: static; box-shadow: none; border: none; border-left: 2px solid var(--line);
     border-radius: 0; margin: 2px 0 2px 14px; padding: 0 0 0 6px; min-width: 0;
@@ -258,14 +267,6 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
   .hero h1 { font-size: 1.9rem; }
   .feature-grid, .steps { grid-template-columns: 1fr; }
   .field-row { grid-template-columns: 1fr; }
-  .nav-links {
-    display: none; position: absolute; top: 100%; left: 0; right: 0;
-    background: #fff; flex-direction: column; padding: 10px 20px 16px; border-bottom: 1px solid var(--line);
-  }
-  .nav-links.open { display: flex; }
-  .nav-toggle { display: block; margin-left: auto; }
-  .nav-right { margin-left: 0; }
-  .navbar .nav-inner { position: relative; flex-wrap: wrap; }
   .chat-layout { grid-template-columns: 1fr; }
   .chat-sidebar { display: none; }
   .chat-sidebar.open { display: flex; position: absolute; z-index: 5; width: 260px; height: 100%; box-shadow: var(--shadow); }
@@ -334,3 +335,27 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
 .faq-a { padding: 0 20px 18px; color: var(--ink-soft); line-height: 1.6; font-size: 0.95rem; }
 .faq-a ul { margin: 8px 0 0; padding-left: 20px; }
 .prep-list { margin: 8px 0 0; padding-left: 20px; color: var(--ink-soft); line-height: 1.7; font-size: 0.95rem; }
+
+/* Footer */
+.footer { border-top: 1px solid var(--line); background: #fff; margin-top: 20px; }
+.footer-inner {
+  max-width: 1080px; margin: 0 auto; padding: 36px 20px 20px;
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 24px;
+}
+.footer-brand img { height: 44px; width: auto; }
+.footer-brand p { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.6; }
+.footer-emg { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; font-weight: 700; }
+.footer-col { display: flex; flex-direction: column; gap: 8px; }
+.footer-col h4 { margin: 0 0 4px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); }
+.footer-col a { color: var(--ink-soft); font-size: 0.93rem; }
+.footer-col a:hover { color: var(--brand-dark); }
+.footer-bottom {
+  max-width: 1080px; margin: 0 auto; padding: 14px 20px 22px;
+  border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; line-height: 1.6;
+}
+@media (max-width: 860px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
