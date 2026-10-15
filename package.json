@@ -1,0 +1,19 @@
+{
+  "description": "HealthWise \u2014 college demo: healthcare website with AI medical chatbot (no database)",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "name": "healthwise",
+  "private": true,
+  "scripts": {
+    "build": "npm run build --prefix client",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "version": "1.0.0",
+  "workspaces": [
+    "server",
+    "client"
+  ]
+}
