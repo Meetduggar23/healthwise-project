@@ -28,8 +28,8 @@ both accounts and routes each to the right place:
 `ADMIN_PASSWORD` in `server/.env` — see Configuration.)
 
 Notes: the login form has a show/hide password eye; the Sign Up button is
-UI-only and disabled in this demo (no self-registration). A dedicated admin
-login also exists at `http://localhost:5173/admin/login`. Admin sessions are
+UI-only and disabled in this demo (no self-registration). The dedicated admin
+login page accepts both accounts too (admin → dashboard, patient → patient pages). Admin sessions are
 separate from patient sessions, and credentials are never in frontend code.
 
 ## Configuration

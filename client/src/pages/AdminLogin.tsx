@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../api/client";
+import { useAuth } from "../components/AuthContext";
 import { useAdminAuth } from "../components/AdminAuthContext";
 import { PasswordField } from "../components/PasswordField";
 
 export function AdminLogin() {
-  const { login } = useAdminAuth();
+  const { refresh: refreshUser } = useAuth();
+  const { refresh: refreshAdmin } = useAdminAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,15 +18,18 @@ export function AdminLogin() {
     e.preventDefault();
     setError("");
     if (!email.trim() || !password) {
-      setError("Please enter your admin email and password.");
+      setError("Please enter your email and password.");
       return;
     }
     setBusy(true);
     try {
-      await login(email.trim(), password);
-      navigate("/admin/dashboard");
+      // Same login as the main page: admin email opens the admin section,
+      // patient email opens the patient pages — routed by role.
+      const r = await api.unifiedLogin(email.trim(), password);
+      await Promise.all([refreshUser(), refreshAdmin()]);
+      navigate(r.role === "admin" ? "/admin/dashboard" : "/appointments");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Admin login failed. Please try again.");
+      setError(err instanceof Error ? err.message : "Login failed. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -36,7 +42,7 @@ export function AdminLogin() {
           <img className="auth-logo" src="/logo.png" alt="HealthWise" />
           <span className="admin-badge">Admin area</span>
           <h1>Admin login</h1>
-          <p className="sub">Sign in with the administrator account to manage all appointments. (You can also use the main login page.)</p>
+          <p className="sub">Same login as the main page — admin email opens the admin section, patient email opens the patient pages.</p>
           {error && <div className="alert alert-error">{error}</div>}
           <form onSubmit={submit}>
             <div className="field">

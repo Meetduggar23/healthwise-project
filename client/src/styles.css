@@ -139,9 +139,10 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
 
 /* Auth */
 .auth-wrap { max-width: 440px; margin: 40px auto; }
-.auth-logo { display: block; height: 64px; margin: 0 auto 14px; }
-.auth-card h1 { text-align: center; }
-.auth-card .sub { text-align: center; }
+.auth-logo { display: block; height: 64px; margin: 0 0 14px; }
+.auth-card { text-align: left; }
+.auth-card h1 { text-align: left; }
+.auth-card .sub { text-align: left; }
 .auth-switch { text-align: center; margin-top: 16px; color: var(--ink-soft); font-size: 0.93rem; }
 .auth-switch a { color: var(--brand-dark); font-weight: 600; }
 
@@ -163,6 +164,7 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
 }
 .auth-alt .btn { width: 100%; }
 .auth-alt .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.auth-alt .sub { text-align: center; }
 
 /* Appointments */
 .appt-list { display: grid; gap: 14px; margin-top: 18px; }
