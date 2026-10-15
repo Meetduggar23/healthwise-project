@@ -1581,6 +1581,306 @@ I can't book, confirm, or cancel appointments from this chat — the booking pag
 
 **Emergency:** Rarely an emergency — but a crushed bleeding nail with deformity, or rapidly spreading redness with fever, needs urgent care. **Specialist:** Dermatologist; General Physician for deficiency workup.`,
   },
+  {
+    id: "appendicitis-awareness",
+    keywords: ["appendicitis", "appendix", "apendix", "apendisitis", "nabhi", "nabhi se right dard", "neeche right dard", "lower right", "lower-right", "neeche dayen", "right lower pain", "daayein neeche dard", "pet dard bukhar ulti", "rebound pain", "अपेंडिक्स", "appendix dard"],
+    title: "Appendicitis awareness",
+    category: "Digestive and Intestinal Diseases",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Appendicitis is inflammation of the appendix — a small pouch off the large intestine. It typically needs prompt hospital assessment because a delayed case can rupture.
+
+**Common signs (possibilities, not diagnoses):** Pain starting vaguely near the navel and shifting to the lower-right abdomen, loss of appetite, nausea or vomiting, and fever; pain that worsens with movement, coughing, or pressing and releasing the area.
+
+**Useful questions:** Where did the pain start, and did it move? With fever, vomiting, or appetite loss? Getting worse over hours?
+
+**What you can do:** Stop eating and seek assessment promptly; note when the pain started and what makes it worse; do not take strong painkillers or laxatives that mask the picture.
+
+**What to avoid:** Waiting at home with worsening right-sided pain and fever, or treating it as ordinary gas — appendicitis cannot be confirmed or ruled out by chat.
+
+**When to see a doctor:** Any suspected pattern above — same-day surgical assessment, usually with examination, blood tests, and ultrasound. Related topics: abdominal pain guide, food poisoning.
+
+**Emergency — call 112:** Severe worsening pain with high fever, rigid/hard belly, repeated vomiting, or fainting. **Specialist:** General Surgeon (via emergency or General Physician referral).`,
+  },
+  {
+    id: "heart-valve-disorders",
+    keywords: ["heart valve", "valve leak", "valve narrow", "dil ka valve", "valve kharab", "murmur", "dil me awaaz", "rheumatic heart", "mitral", "aortic valve", "वाल्व", "valve disorder"],
+    title: "Heart valve disorders",
+    category: "Heart and Circulatory Health",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Four valves keep blood flowing one way through the heart. A valve can narrow (stenosis) or leak (regurgitation) — often from age-related wear, rheumatic fever after untreated strep throat, birth differences, or infection.
+
+**Common signs (possibilities, not diagnoses):** Breathlessness on exertion, fatigue, swollen ankles, palpitations, dizziness, or a murmur (extra heart sound) heard by a doctor; many mild cases have no symptoms and are found on routine examination.
+
+**Useful questions:** Breathless on stairs or lying flat? Swelling in feet? History of rheumatic fever or recurrent sore throats in childhood? Fainting with exertion?
+
+**What you can do:** Treat sore throats promptly in children (rheumatic fever prevention); keep dental hygiene (reduces valve-infection risk); track breathlessness and swelling for the doctor; take prescribed medicines regularly.
+
+**What to avoid:** Ignoring exertion-related fainting or worsening breathlessness; stopping prescribed medicines because of feeling better; assuming every murmur means surgery — most mild leaks are only monitored.
+
+**When to see a doctor:** New murmur, worsening breathlessness, fainting, or swelling — echocardiogram (echo) shows valve function. Related topics: heart failure, cardiac tests, palpitations and rhythm.
+
+**Emergency — call 112:** Severe breathlessness at rest, chest pain, or fainting. **Specialist:** Cardiologist.`,
+  },
+  {
+    id: "bells-palsy-facial",
+    keywords: ["bells palsy", "bell's palsy", "face paralysis", "chehra tedha", "muh tedha achanak", "aankh band nahi", "face droop one side", "mooh tedha", "चेहरा टेढ़ा", "facial weakness"],
+    title: "Bell's palsy (sudden facial weakness)",
+    category: "Brain and Nervous System",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Bell's palsy is sudden weakness of one side of the face — usually from temporary facial-nerve inflammation — and most people recover substantially over weeks to months.
+
+**Common signs (possibilities, not diagnoses):** One-sided drooping smile, inability to close one eye, drooling, altered taste, or ear pain on that side — developing over hours.
+
+**Useful questions:** Exactly when did it start? Any limb weakness, speech trouble, or vision change alongside? Recent ear infection, cold sores, or head injury?
+
+**What you can do:** Protect the exposed eye (lubricating drops, taping shut at night only as a doctor advises); note the exact start time; seek same-day assessment because early treatment works best.
+
+**What to avoid:** Assuming every facial droop is Bell's palsy — stroke looks similar and needs emergency care first. Do not delay assessment to "wait and watch".
+
+**When to see a doctor:** Any new facial droop — same-day review; steroids and eye care are time-sensitive. Related topics: stroke and circulation, ear infections.
+
+**Emergency — call 112:** Facial droop WITH limb weakness, slurred speech, vision loss, or sudden severe headache (possible stroke). **Specialist:** Neurologist; ENT if ear-related.`,
+  },
+  {
+    id: "meningitis-awareness",
+    keywords: ["meningitis", "meningites", "dimaghi bukhar", "gardan akad bukhar", "gardan akad", "akad gardan", "stiff neck", "stiff neck fever", "neck stiffness fever", "tez bukhar ulti rash", "मेनिन्जाइटिस", "brain fever", "meningitis vaccine"],
+    title: "Meningitis awareness",
+    category: "Brain and Nervous System",
+    sources: ["World Health Organization", "Centers for Disease Control and Prevention (CDC)"],
+    body: `**Simple explanation:** Meningitis is inflammation of the membranes around the brain and spinal cord — usually from viral or bacterial infection. Bacterial meningitis is a medical emergency; vaccines prevent several types.
+
+**Common signs (possibilities, not diagnoses):** Sudden high fever with severe headache, stiff neck (gardan akadna), vomiting, sensitivity to light, confusion or drowsiness; in babies — poor feeding, unusual crying, bulging soft spot, or limpness.
+
+**Useful questions:** How fast did symptoms appear — hours or days? Any rash that does not fade under a glass, seizures, or recent ear/sinus infection?
+
+**What you can do:** Treat it as an emergency and go to hospital at once; note symptom start time and vaccination history; keep the person comfortable and hydrated while help arrives.
+
+**What to avoid:** Waiting to "see if the fever settles" when stiff neck, rash, or confusion are present; giving leftover antibiotics instead of emergency assessment.
+
+**When to see a doctor:** Immediately for the pattern above — diagnosis needs lumbar puncture and blood tests in hospital. Related topics: fever, seizures, childhood symptoms.
+
+**Emergency — call 112:** Any combination of high fever, stiff neck, rash, confusion, or seizures. **Specialist:** Emergency physician, then Neurologist or Pediatrician.`,
+  },
+  {
+    id: "kidney-infection",
+    keywords: ["kidney infection", "pyelonephritis", "gurde me infection", "kamar dard", "kamar dard bukhar peshab", "kamar dard bukhar", "bukhar peshab", "peeth dard bukhar", "side pain fever urine", "urine infection fever", "tharthar bukhar peshab", "kidney dard", "गुर्दा संक्रमण"],
+    title: "Kidney infection (pyelonephritis)",
+    category: "Kidney and Urinary Health",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** A kidney infection happens when a UTI travels upward to the kidneys — more serious than bladder infection and needing prompt prescription treatment, not home management alone.
+
+**Common signs (possibilities, not diagnoses):** Fever with chills, pain in the side or back below the ribs, nausea or vomiting, plus burning or frequent urination; cloudy or foul-smelling urine.
+
+**Useful questions:** Burning urination before the fever began? One-sided back/side pain? Vomiting that prevents keeping fluids or medicines down? Pregnancy, stones, or repeated UTIs?
+
+**What you can do:** Seek prompt care the same day; drink water if you can keep it down; note temperature, pain side, and urine changes for the doctor; complete the full prescribed antibiotic course.
+
+**What to avoid:** Treating fever-with-back-pain as ordinary backache; cranberry products or extra water alone instead of assessment; stopping antibiotics early when fever settles.
+
+**When to see a doctor:** Promptly for the pattern above — urine tests, sometimes blood tests or ultrasound, guide treatment. Pregnant patients, children, men, and elders need earlier review. Related topics: UTI basics, kidney stones, fever.
+
+**Emergency — call 112:** High fever with confusion, very low urine, severe vomiting with dehydration, or single-kidney/pregnancy cases worsening fast. **Specialist:** General Physician; Urologist or Nephrologist if referred.`,
+  },
+  {
+    id: "endometriosis",
+    keywords: ["endometriosis", "endometreosis", "mahwari me tez dard", "period me tez dard", "bahut tez dard", "severe period pain", "period pain severe", "period me bahut dard", "painful periods severe", "period pain vomiting", "sambhog me dard", "infertility periods pain", "chocolate cyst", "एंडोमेट्रियोसिस", "pcos endometriosis difference"],
+    title: "Endometriosis",
+    category: "Sexual and Reproductive Health",
+    sources: ["World Health Organization", "MedlinePlus"],
+    body: `**Simple explanation:** Endometriosis is tissue similar to the womb lining growing outside the uterus — causing inflammation, severe period pain, and sometimes fertility difficulty. It differs from PCOS, which is an ovulation-hormone disorder; both can disturb periods and coexist.
+
+**Common signs (possibilities, not diagnoses):** Period pain severe enough to disrupt school/work or cause vomiting, pain during intercourse or bowel movements during periods, heavy bleeding, chronic pelvic pain, or difficulty conceiving.
+
+**Useful questions:** How many days of normal life does pain steal each month? Pain only with periods or between them too? Bowel/bladder pain, heavy flow, or family history?
+
+**What you can do:** Track pain, bleeding, and missed days on a calendar; warmth and gentle activity may ease ordinary cramps; seek evaluation rather than normalising severe pain.
+
+**What to avoid:** Accepting years of disabling period pain as "normal"; repeated strong painkillers without diagnosis; assuming pregnancy is impossible — many conceive with care.
+
+**When to see a doctor:** Prompt gynaecology review for the pattern above — ultrasound and clinical criteria guide diagnosis; laparoscopy confirms selected cases. Related topics: menstrual health, PCOS, pelvic pain and fertility.
+
+**Emergency — call 112:** Sudden severe pelvic pain with fainting or heavy bleeding. **Specialist:** Gynecologist.`,
+  },
+  {
+    id: "gout",
+    keywords: ["gout", "gathiya uric acid", "uric acid badhna", "pair ke anguthe me dard", "toe joint pain night", "jod me sujan dard achanak", "गाउट", "gout diet"],
+    title: "Gout (uric-acid arthritis)",
+    category: "Orthopedics and Rehabilitation",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Gout is sudden, intensely painful joint inflammation from uric-acid crystal deposits — classically the big-toe base flaring at night — linked to kidney excretion, diet, alcohol, weight, and some medicines.
+
+**Common signs (possibilities, not diagnoses):** Abrupt severe pain, redness, warmth, and swelling in one joint (often the big toe, ankle, or knee), peaking within hours; repeated flares or chalky lumps (tophi) later.
+
+**Useful questions:** Which joint, and how fast did it swell? Alcohol, red meat, sugary drinks, dehydration, or water-tablet use? Kidney disease, BP, or family history of gout?
+
+**What you can do:** Rest and elevate the joint, cold packs, hydration, and avoid alcohol and purine-heavy feasts during flares; note flare frequency for the doctor.
+
+**What to avoid:** Self-starting long-term uric-acid medicines or stopping them during flares without advice; confusing every joint pain with gout — infections and rheumatoid flares need different care.
+
+**When to see a doctor:** First-ever hot swollen joint (infection must be ruled out), flares beyond 1–2 per year, or kidney stones alongside — uric-acid testing between flares guides care. Related topics: arthritis, kidney stones, nutrition and weight.
+
+**Emergency — call 112:** Single hot joint with high fever and inability to move it (possible joint infection). **Specialist:** General Physician or Rheumatologist.`,
+  },
+  {
+    id: "scabies",
+    keywords: ["scabies", "kharj", "khujli raat", "itching night family", "burrow lines skin", "kharish", "kujli", "खाज", "scabies treatment", "kapde se khujli"],
+    title: "Scabies",
+    category: "Dermatology and Hair Disorders",
+    sources: ["Centers for Disease Control and Prevention (CDC)", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Scabies is an itchy skin infestation by tiny mites that burrow under the skin — spreading through prolonged skin contact and shared bedding or clothes. It is curable but easily returns without full household treatment.
+
+**Common signs (possibilities, not diagnoses):** Intense itching worse at night, thin burrow lines, and small bumps or sores between fingers, on wrists, waistline, genitals, or in infants on the head and soles.
+
+**Useful questions:** Does the whole family or hostel room itch? Worse at night? Recent close contact, travel, or shared bedding?
+
+**What you can do:** See a doctor for confirmation and full instructions; treat all close contacts simultaneously; wash bedding and clothes in hot water and dry in sun; trim nails to limit scratch damage.
+
+**What to avoid:** Steroid-only creams that mask it while mites spread; sharing towels, bedding, or clothes during infestation; stopping treatment the day itching eases — itch can linger weeks after cure.
+
+**When to see a doctor:** Prompt dermatology or physician review for the pattern above; crusted (Norwegian) scabies with thick scales needs urgent specialist care. Related topics: fungal infections, eczema-type itching, allergies.
+
+**Emergency:** Rarely an emergency — but widespread infected sores with fever need urgent care. **Specialist:** Dermatologist.`,
+  },
+  {
+    id: "shingles",
+    keywords: ["shingles", "herpes zoster", "nagin", "naagin", "eksash belt rash", "dard bhare daane ek taraf", "one side rash pain", "आग", "shingles vaccine", "chickenpox rash adult"],
+    title: "Shingles (herpes zoster)",
+    category: "Dermatology and Hair Disorders",
+    sources: ["Centers for Disease Control and Prevention (CDC)", "MedlinePlus"],
+    body: `**Simple explanation:** Shingles is a painful stripe-like rash from reactivated chickenpox virus sleeping in nerves — usually on one side of the torso or face — striking mainly older or immunity-weakened adults.
+
+**Common signs (possibilities, not diagnoses):** Burning, tingling, or stabbing pain on one side for days, followed by fluid-filled blisters in a band; sometimes fever and headache.
+
+**Useful questions:** One-sided band pattern? Burning before the rash appeared? Age beyond 50, stress, or immunity-weakening illness or medicines? Eye or ear involvement?
+
+**What you can do:** Seek care within 72 hours of the rash — early antivirals shorten it and reduce lingering nerve pain; keep blisters clean, covered, and untouched; avoid pregnant people, newborns, and unvaccinated contacts until crusting.
+
+**What to avoid:** Scratching blisters open; steroid creams without advice; dismissing face/eye-area shingles as ordinary allergy.
+
+**When to see a doctor:** Urgently for face, eye, or ear-area rash, or widespread blisters with weak immunity. Related topics: chickenpox-type rashes in children, nerve pain, vaccination.
+
+**Emergency — call 112:** Rash on the nose tip or eye with vision change, or shingles with confusion and high fever. **Specialist:** General Physician or Dermatologist; Ophthalmologist for eye involvement.`,
+  },
+  {
+    id: "mental-health-advanced",
+    keywords: ["ocd", "obsessive", "baaram baar haath dhona", "intrusive thoughts", "gande khayal", "ptsd", "daravna hadsa", "flashback", "panic attack", "ghabrahat daura", "dil zor se dhadakna dar", "burnout", "thakan kaam", "anxiety disorder", "depression test", "चिंता", "अवसाद"],
+    title: "Anxiety disorders, OCD, PTSD, panic and burnout",
+    category: "Mental Health",
+    sources: ["World Health Organization", "MedlinePlus"],
+    body: `**Simple explanation:** Beyond everyday stress, anxiety disorders involve persistent excessive worry; OCD adds unwanted intrusive thoughts with repetitive behaviours; PTSD follows trauma with flashbacks and avoidance; panic attacks are sudden intense fear episodes; burnout is work-linked exhaustion with detachment. All are treatable health conditions, not character flaws.
+
+**Common signs (possibilities, not diagnoses):** Racing heart, breathlessness, or dizziness during panic; hours lost to checking, washing, or reassurance-seeking; nightmares or avoidance after trauma; emotional numbness and falling performance at work.
+
+**Useful questions:** How long, and how much of daily life is affected — sleep, work, relationships? Any avoidance of places or people? Alcohol or sleep-medicine use rising? Any thoughts of self-harm?
+
+**What you can do:** Regular sleep, movement, and limited caffeine and alcohol; slow breathing during panic (in 4, out 6); small graded steps back into avoided situations; trusted person or counsellor to talk to.
+
+**What to avoid:** Shame or secrecy that delays help; unprescribed calming pills or alcohol for relief; dismissing a loved one's symptoms as drama.
+
+**When to seek professional help:** Symptoms beyond 2 weeks affecting daily life, panic attacks, inability to work or sleep, trauma that will not fade, or any self-harm thoughts — psychiatrist, psychologist, or counsellor promptly. Related topics: stress and mental wellness, sleep.
+
+**Emergency:** Thoughts of self-harm or harming others need immediate support — call 112 or a crisis helpline, and stay with a trusted person. **Specialist:** Psychiatrist / Psychologist.`,
+  },
+  {
+    id: "fibroids",
+    keywords: ["fibroid", "rasoli", "garbhashay rasoli", "uterus lump", "heavy periods clots", "mahwari me gatthe", "period lamba", "pet me ganth mahwari", "फाइब्रॉएड", "fibroid surgery"],
+    title: "Uterine fibroids (rasoli)",
+    category: "Sexual and Reproductive Health",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Fibroids (rasoli) are non-cancerous muscle growths in the uterus — very common, often silent, and a frequent cause of heavy periods, pelvic pressure, and fertility difficulty.
+
+**Common signs (possibilities, not diagnoses):** Heavy or prolonged periods with clots, pelvic heaviness or visible swelling, frequent urination, backache, pain during intercourse, or trouble conceiving.
+
+**Useful questions:** How many pads or how often changed on heavy days? Cycle length and anemia symptoms (fatigue, breathlessness)? Pregnancy plans? Family history of fibroids?
+
+**What you can do:** Track bleeding days and pad counts; correct iron deficiency as tested; discuss pregnancy timing openly with the gynaecologist; keep ultrasound reports for comparison.
+
+**What to avoid:** Assuming every pelvic lump is cancer — fibroids are benign, but new growths still need imaging, not assumption; unproven "dissolving" remedies instead of follow-up.
+
+**When to see a doctor:** Heavy bleeding, anaemia, rapid belly growth, severe pain, or fertility concerns — ultrasound sizes and maps them; options range from watchful waiting to medicines or procedures. Related topics: menstrual health, anaemia, endometriosis.
+
+**Emergency — call 112:** Soaking through protection hourly with dizziness or fainting. **Specialist:** Gynecologist.`,
+  },
+  {
+    id: "postpartum-care",
+    keywords: ["postpartum", "delivery ke baad", "prasav ke baad", "bachcha hone ke baad", "post delivery bleeding", "breast pain fever delivery", "baby blues", "postpartum depression", "delivery ke baad bukhar", "प्रसव", "new mother care"],
+    title: "Postpartum care and warning signs",
+    category: "Pregnancy and Maternal Health",
+    sources: ["World Health Organization", "Ministry of Health and Family Welfare, India"],
+    body: `**Simple explanation:** The weeks after delivery (postpartum) need as much attention as pregnancy — the body heals, feeding begins, and mood swings are common, but some signs need urgent care.
+
+**Normal recovery:** Tiredness, mild "baby blues" for a couple of weeks, after-pains, vaginal discharge (lochia) reducing over weeks, and breast fullness as milk comes in.
+
+**Warning signs needing prompt care:** Heavy bleeding (soaking pads hourly), fever, foul-smelling discharge, severe headache or vision changes, leg swelling with pain, breast redness with fever, wound redness or pus, or sadness beyond two weeks affecting bonding and function.
+
+**What you can do:** Rest with the baby's sleep, nutritious home food with fluids, gentle walking as advised, exclusive breastfeeding support, and help with chores — plus a companion watching for warning signs.
+
+**What to avoid:** Lifting heavy weights early, skipping postnatal check-ups, suffering mood symptoms silently, or using unprescribed medicines while breastfeeding.
+
+**When to see a doctor:** Routine postnatal visits plus any warning sign above without delay. Related topics: pregnancy wellness, newborn care, UTI, mental wellness.
+
+**Emergency — call 112:** Heavy bleeding with faintness, seizures, chest pain or breathlessness, or thoughts of harming self or baby. **Specialist:** Obstetrician; Pediatrician for the baby.`,
+  },
+  {
+    id: "prostatitis",
+    keywords: ["prostatitis", "prostate infection", "prostate dard", "peshab me jalan purush", "pelvic pain men", "baar baar peshab purush", "prostate sujan", "वीर्य संक्रमण", "prostate problem young"],
+    title: "Prostatitis (prostate inflammation)",
+    category: "Men's Health",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Prostatitis is inflammation of the prostate — different from age-related enlargement — causing pelvic pain and urinary symptoms in men, sometimes young men, usually from infection or pelvic-muscle irritation.
+
+**Common signs (possibilities, not diagnoses):** Pain between the legs, lower back, or during ejaculation; burning or frequent urination; weak stream; fever in sudden (acute) cases.
+
+**Useful questions:** Pain location — pelvis, back, testicles? Fever or discharge? Recent UTI, dehydration, long sitting, or new sexual exposure? Trouble starting or fully emptying?
+
+**What you can do:** Seek timely evaluation rather than waiting; drink water, avoid holding urine, limit alcohol and spicy food during symptoms; note fever and pain pattern for the doctor.
+
+**What to avoid:** Leftover antibiotics or "prostate capsules" without diagnosis; long cycling or heavy lifting during acute pain; assuming all prostate trouble is cancer.
+
+**When to see a doctor:** Prompt urology or physician review — urine tests guide whether antibiotics, other medicines, or pelvic therapy fit. Chronic pelvic pain needs structured follow-up. Related topics: prostate enlargement, UTI, STI testing.
+
+**Emergency — call 112:** Inability to urinate with pain and fever, or severe pelvic pain with vomiting. **Specialist:** Urologist.`,
+  },
+  {
+    id: "child-breathing-croup",
+    keywords: ["croup", "khar khar khansi bachcha", "seal bark cough", "bhokne jaisi khansi", "bronchiolitis", "saans tez bachcha", "wheezing baby", "child breathing fast", "bachche ko saans", "खांसी बच्चा", "infant cold breathing"],
+    title: "Croup and bronchiolitis in young children",
+    category: "Child and Adolescent Health",
+    sources: ["MedlinePlus", "National Health Service (NHS)"],
+    body: `**Simple explanation:** Croup (barking, seal-like cough with hoarseness, often at night) and bronchiolitis (fast breathing with wheeze in babies after a cold) are viral airway illnesses of early childhood — most mild, but breathing signs decide urgency.
+
+**Common signs (possibilities, not diagnoses):** Croup — harsh barking cough, noisy breathing in, mild fever. Bronchiolitis — runny nose then fast shallow breathing, wheeze, poor feeding in infants.
+
+**Useful questions:** Age in months? Breathing rate, chest indrawing, or blue lips? Feeding and wet nappies normal? Fever level and alertness?
+
+**What you can do:** Keep the child upright and calm (crying worsens croup); offer fluids and breastfeeds; cool night air at a window may soothe croup; count breaths for the doctor; no adult cough syrups or antibiotics without prescription.
+
+**What to avoid:** Smoke exposure, honey below age one, and home nebulisation without guidance; waiting at home with laboured breathing or poor feeding.
+
+**When to see a doctor:** Same-day pediatric review for noisy breathing, fast breathing, or poor feeding; routine follow-up if colds keep recurring. Related topics: children's health, asthma basics, fever, vaccination.
+
+**Emergency — call 112:** Struggling to breathe, ribs pulling in, blue lips, unusual drowsiness, or dehydration (no tears, very few wet nappies). **Specialist:** Pediatrician.`,
+  },
+  {
+    id: "iodine-deficiency",
+    keywords: ["iodine", "iodine deficiency", "ghengha", "gala sujan thyroid", "neck swelling thyroid", "iodised salt", "aayodit namak", "आयोडीन", "goitre", "ghengha rog"],
+    title: "Iodine deficiency and goitre (ghengha)",
+    category: "Nutrition Science and Clinical Nutrition",
+    sources: ["World Health Organization", "MedlinePlus"],
+    body: `**Simple explanation:** Iodine builds thyroid hormone — too little swells the neck gland (goitre/ghengha) and, in pregnancy and childhood, can harm brain development. Iodised salt has made severe deficiency uncommon but not extinct.
+
+**Common signs (possibilities, not diagnoses):** Painless front-neck swelling, fatigue, dry skin, or constipation with thyroid underactivity; learning and growth concerns in iodine-poor regions.
+
+**Useful questions:** Iodised salt or rock salt at home? Neck swelling duration and breathing or swallowing trouble? Pregnancy or young children in the house? Thyroid test history?
+
+**What to do:** Use adequately iodised salt stored dry and added at the end of cooking; seafood, dairy, and eggs add natural iodine; get neck swellings and thyroid symptoms tested rather than self-treating.
+
+**What to avoid:** Extra iodine drops or kelp supplements without testing — excess also harms the thyroid; confusing every neck swelling with simple goitre instead of getting examined.
+
+**When to see a doctor:** Any persistent neck swelling, compressive symptoms, or thyroid-type fatigue with weight change — thyroid tests and ultrasound guide care. Related topics: thyroid disorders, vitamins and minerals, pregnancy wellness.
+
+**Emergency:** Rarely an emergency — but sudden painful swelling with breathing or swallowing trouble needs urgent care. **Specialist:** General Physician or Endocrinologist.`,
+  },
 ];
 
 const EMERGENCY_KEYWORDS = MEDICAL_KNOWLEDGE.find((t) => t.id === "emergency")!.keywords;

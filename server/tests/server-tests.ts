@@ -338,6 +338,34 @@ async function main(): Promise<void> {
     check("footer hidden on chat route", fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/Footer.tsx"), "utf8").includes('pathname === "/chat"'));
     check("floating chat widget fully removed", !fs.existsSync(path.resolve(process.cwd(), "../client/src/components/ChatWidget.tsx")) && !fs.readFileSync(path.resolve(process.cwd(), "../client/src/App.tsx"), "utf8").includes("ChatWidget") && !fs.readFileSync(path.resolve(process.cwd(), "../client/src/styles.css"), "utf8").includes("chat-fab"));
     check("retry in chat hook", fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/useChat.ts"), "utf8").includes("const retry"));
+
+    // ---- 12. medical library API + shared catalogue ----
+    console.log("\n[12] Medical library");
+    const libRes = await anon.req("/api/knowledge/topics");
+    const libTopics = (libRes.body as { topics?: { id: string; title: string; category: string | null; keywords: string[]; body: string; sources: string[] }[] }).topics ?? [];
+    check("library API public (200)", libRes.status === 200, `status=${libRes.status}`);
+    const { MEDICAL_KNOWLEDGE: KB } = await import("../src/knowledge.js");
+    check("library covers every chatbot topic", libTopics.length === KB.length, `api=${libTopics.length} kb=${KB.length}`);
+    check(
+      "topic fields present",
+      libTopics.every((t) => t.id && t.title && Array.isArray(t.keywords) && t.keywords.length > 0 && t.body.length > 50 && Array.isArray(t.sources)),
+    );
+    const { displayCategory, searchTopics, parseSections } = await import("../../client/src/lib/medicalLibrary.js");
+    const mapped = libTopics.map((t) => ({ id: t.id, cat: displayCategory(t) }));
+    check("appointment-help intentionally excluded", mapped.find((x) => x.id === "appointment-help")?.cat === null);
+    check("all other topics categorized", mapped.filter((x) => x.cat === null).every((x) => x.id === "appointment-help"));
+    check("categories non-empty", new Set(mapped.map((x) => x.cat).filter(Boolean)).size >= 20);
+    const libSearch = (q: string) => searchTopics(libTopics, q).map((t) => t.id);
+    check("search: pet dard", libSearch("pet dard").includes("abdominal-pain-guide"));
+    check("search: stomach pain", libSearch("stomach pain").some((id) => ["abdominal-pain-guide", "stomach"].includes(id)));
+    check("search: thyroid Hinglish", libSearch("thiroyd").length > 0 || libSearch("thyroid").includes("thyroid-hypo-hyper-tests"));
+    check("search: no results", searchTopics(libTopics, "zxqwkj blorpt").length === 0);
+    const fever = libTopics.find((t) => t.id === "fever");
+    check("sections parse", fever !== undefined && parseSections(fever.body).length >= 3 && parseSections(fever.body)[0].heading !== null);
+    const mlSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/MedicalLibrary.tsx"), "utf8");
+    check("library home: search+categories+az", /ml-q/.test(mlSrc) && /cat-grid/.test(mlSrc) && /A–Z/.test(mlSrc));
+    const mtSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/MedicalTopic.tsx"), "utf8");
+    check("topic page: toc+refs+ask-ai", /On this page/.test(mtSrc) && /References and sources/.test(mtSrc) && /Ask HealthWise AI about this topic/.test(mtSrc));
   } finally {
     // On Windows, kill() only stops the shell — terminate the whole tree
     // so no orphan server keeps holding the test port.

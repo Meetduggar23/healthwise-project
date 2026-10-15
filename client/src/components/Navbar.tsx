@@ -5,6 +5,7 @@ import { useAdminAuth } from "./AdminAuthContext";
 
 const MORE_LINKS = [
   { to: "/library", label: "Health Library" },
+  { to: "/medical-library", label: "Medical Library" },
   { to: "/tools", label: "Health Tools" },
   { to: "/faq", label: "Health FAQ" },
   { to: "/visit-prep", label: "Visit Prep" },

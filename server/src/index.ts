@@ -8,6 +8,7 @@ import { authRouter } from "./auth.js";
 import { adminRouter } from "./admin.js";
 import { appointmentsRouter, adminAppointmentsRouter } from "./appointments.js";
 import { chatbotRouter } from "./chatbot.js";
+import { libraryRouter } from "./library.js";
 
 const app = express();
 const isProd = env.nodeEnv === "production";
@@ -61,6 +62,7 @@ app.use("/api/admin", adminRouter);
 app.use("/api/appointments", appointmentsRouter);
 app.use("/api/admin/appointments", adminAppointmentsRouter);
 app.use("/api/chat", chatbotRouter);
+app.use("/api/knowledge", libraryRouter);
 
 // Serve the built client in production.
 const clientDist = path.resolve(process.cwd(), "../client/dist");

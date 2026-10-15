@@ -396,6 +396,32 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
 .med-section h2 { font-size: 1.15rem; padding-bottom: 6px; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
 .msg-bot a { color: var(--brand-dark); font-weight: 600; }
 
+/* Medical Library */
+.med-filter-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.med-filter-row select {
+  flex: 1; min-width: 180px; padding: 10px 12px; border: 1.5px solid var(--line);
+  border-radius: 10px; font-size: 0.92rem; font-family: inherit; background: #fff;
+}
+.cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+.cat-card {
+  display: flex; gap: 14px; align-items: center; text-align: left; cursor: pointer;
+  padding: 16px; font-family: inherit; font-size: 1rem; color: var(--ink); width: 100%;
+}
+button.cat-card { border: 1px solid var(--line); background: var(--card); }
+.cat-card:hover { border-color: var(--brand); }
+.cat-art { width: 64px; height: 64px; flex-shrink: 0; border-radius: 12px; overflow: hidden; }
+.chip-plain { background: #eef1f5; color: var(--ink-soft); }
+.med-img-sm { aspect-ratio: 16 / 8; }
+a.med-card { color: inherit; }
+a.med-card:hover { border-color: var(--brand); }
+@media (max-width: 1100px) {
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 860px) {
+  .cat-grid { grid-template-columns: 1fr; }
+  .med-filter-row { flex-direction: column; }
+}
+
 /* Full-page ChatGPT-style chat */
 .gpt-wrap { display: flex; height: calc(100dvh - 63px); background: #fff; overflow: hidden; }
 .gpt-side {

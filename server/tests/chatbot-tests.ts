@@ -249,6 +249,29 @@ check(
   (MEDICAL_KNOWLEDGE.find((t) => t.id === "stomach")?.body ?? "").includes("Avoid self-medicating with antibiotics"),
 );
 
+// ---------- 13. Second knowledge expansion ----------
+console.log("\n[13] New topics (appendicitis, valve, neuro, kidney, hormones, skin, mental, repro)");
+const expandCases: [string, string, string][] = [
+  ["appendicitis", "Pain started near nabhi and moved to lower right with fever.", "appendicitis-awareness"],
+  ["valve", "Doctor heard a murmur, dil ka valve kharab?", "heart-valve-disorders"],
+  ["bells", "Ek taraf chehra tedha ho gaya, aankh band nahi hoti.", "bells-palsy-facial"],
+  ["meningitis", "Tez bukhar with gardan akad and ulti.", "meningitis-awareness"],
+  ["kidney infection", "Kamar dard with bukhar and peshab jalan.", "kidney-infection"],
+  ["endometriosis", "Period me bahut tez dard, vomiting hoti hai.", "endometriosis"],
+  ["gout", "Pair ke anguthe me achanak dard at night.", "gout"],
+  ["scabies", "Poori family ko raat me khujli, kharj?", "scabies"],
+  ["shingles", "Ek taraf dard bhare daane, nagin?", "shingles"],
+  ["ocd", "Baar baar haath dhona, intrusive thoughts.", "mental-health-advanced"],
+  ["fibroids", "Mahwari me gatthe, rasoli?", "fibroids"],
+  ["postpartum", "Delivery ke baad heavy bleeding, bukhar.", "postpartum-care"],
+  ["prostatitis", "Pelvic pain with baar baar peshab, purush.", "prostatitis"],
+  ["croup", "Bachche ko bhokne jaisi khansi at night.", "child-breathing-croup"],
+  ["iodine", "Gale me sujan, ghengha rog?", "iodine-deficiency"],
+];
+for (const [name, q, expected] of expandCases) {
+  check(`expand:${name}`, ids(q).includes(expected), `query="${q}" got=[${ids(q).join(",")}] want ${expected}`);
+}
+
 // ---------- Summary ----------
 console.log(`\n==== ${passed} passed, ${failed} failed, ${MEDICAL_KNOWLEDGE.length} topics total ====`);
 if (failures.length > 0) {

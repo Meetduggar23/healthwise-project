@@ -17,6 +17,8 @@ import { HealthFaq } from "./pages/HealthFaq";
 import { VisitPrep } from "./pages/VisitPrep";
 import { MedicineLibrary } from "./pages/MedicineLibrary";
 import { MedicineDetail } from "./pages/MedicineDetail";
+import { MedicalLibrary } from "./pages/MedicalLibrary";
+import { MedicalTopic } from "./pages/MedicalTopic";
 import { SymptomChecker } from "./pages/SymptomChecker";
 import { AdminLogin } from "./pages/AdminLogin";
 import { AdminDashboard } from "./pages/AdminDashboard";
@@ -40,6 +42,8 @@ export default function App() {
             <Route path="/visit-prep" element={<VisitPrep />} />
             <Route path="/medicines" element={<MedicineLibrary />} />
             <Route path="/medicines/:id" element={<MedicineDetail />} />
+            <Route path="/medical-library" element={<MedicalLibrary />} />
+            <Route path="/medical-library/:id" element={<MedicalTopic />} />
             <Route path="/symptom-checker" element={<SymptomChecker />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
