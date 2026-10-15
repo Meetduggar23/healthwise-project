@@ -450,15 +450,21 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
   font-weight: 600; font-size: 0.88rem; color: var(--ink-soft); font-family: inherit;
 }
 .seg button.active { background: var(--brand); color: #fff; }
-.body-svg { width: 100%; max-width: 340px; height: auto; display: block; margin: 8px auto 0; }
-.body-shape > *:first-child { fill: #dbe7f3; stroke: #9db4cc; stroke-width: 2; transition: fill 0.15s ease; }
-.body-shape { cursor: pointer; outline: none; }
-.body-shape:hover > *:first-child { fill: var(--brand-soft); }
-.body-shape.selected > *:first-child { fill: #f6c9c9; stroke: var(--brand-dark); stroke-width: 2.5; }
+.body-svg { width: 100%; max-width: 340px; height: auto; display: block; margin: 8px auto 0; background: #fff; }
+.body-shape { fill: url(#skinGrad); stroke: #a06a42; stroke-width: 1.6; cursor: pointer; outline: none; transition: fill 0.15s ease; }
+.body-shape:hover { fill: #f7d3ac; }
+.body-shape.selected { fill: #f2b3ab; stroke: var(--brand-dark); stroke-width: 2.4; }
 .body-shape:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; border-radius: 8px; }
-.body-shape .face { fill: #9db4cc; stroke: none; }
-.body-shape .face-line, .body-shape .detail-line { fill: none; stroke: #9db4cc; stroke-width: 1.6; stroke-linecap: round; }
-.body-organ ellipse { fill: #e79b9b; stroke: #b71c1c; stroke-width: 1.6; cursor: pointer; }
+.body-shape .ink { fill: none; stroke: #a06a42; stroke-width: 1.6; stroke-linecap: round; }
+.body-shape .inkfill { fill: #a06a42; stroke: none; }
+.body-shape .white { fill: #fff; stroke: none; }
+.body-shape .hair { fill: #5a3a26; stroke: none; }
+.body-shape .shorts { fill: url(#shortsGrad); stroke: #2c3748; }
+.body-shape:hover .shorts { fill: #6b7c94; }
+.body-shape.selected .shorts { fill: var(--brand); stroke: var(--brand-dark); }
+.body-shape .seam { fill: none; stroke: rgba(255,255,255,0.55); stroke-width: 1.6; }
+.body-shape .spine { fill: none; stroke: #7c5334; stroke-width: 2; stroke-linecap: round; }
+.body-organ ellipse { fill: url(#organGrad); stroke: #a93226; stroke-width: 1.6; cursor: pointer; }
 .body-organ.selected ellipse { fill: var(--brand); }
 .body-organ:focus-visible { outline: 3px solid var(--brand-dark); outline-offset: 2px; }
 .organ-label { font-size: 7px; font-weight: 700; fill: #fff; pointer-events: none; font-family: inherit; }

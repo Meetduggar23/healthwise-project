@@ -226,6 +226,15 @@ export function SymptomChecker() {
             </>
           )}
 
+          {sex === "female" && region.femaleNote && (
+            <>
+              <h3>Women's health note</h3>
+              <div className="alert alert-info" style={{ marginBottom: 8 }}>
+                {region.femaleNote}
+              </div>
+            </>
+          )}
+
           <h3>Related regions</h3>
           <div className="chip-row">
             {region.related.map((id) => {

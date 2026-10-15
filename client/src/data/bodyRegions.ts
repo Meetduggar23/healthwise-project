@@ -25,6 +25,8 @@ export interface BodyRegion {
   surgery: string | null;
   related: string[];
   refs: { label: string; url: string }[];
+  /** Extra educational note shown when the Female illustration is active. */
+  femaleNote?: string;
 }
 
 const HUBS = [
@@ -94,6 +96,7 @@ export const BODY_REGIONS: BodyRegion[] = [
     tests: ["ECG, blood pressure, and oxygen check", "Troponin blood test and chest X-ray when a heart or lung cause is suspected"],
     treatments: ["Doctors treat the confirmed cause: reflux care, inhaler plans, or cardiac care — chest symptoms are never self-triaged by chatbot"],
     surgery: "Considered only for confirmed structural disease (for example, blocked heart arteries or valve problems). The cardiology team explains the purpose, risks, and recovery for each specific procedure.",
+    femaleNote: "Breast awareness: know how your breasts normally look and feel, and get any new lump, nipple discharge, skin dimpling, or persistent pain assessed promptly — most lumps are benign, but all deserve a clinician's look. Breast tenderness that follows the monthly cycle is common.",
     related: ["neck", "abdomen", "arm"],
     refs: HUBS,
   },
@@ -136,6 +139,7 @@ export const BODY_REGIONS: BodyRegion[] = [
     tests: ["Urine test", "Ultrasound of the pelvis when infection, stones, or structural causes are suspected"],
     treatments: ["Doctors treat the confirmed cause: infection care, hormonal review, pelvic-floor therapy, or referral as needed"],
     surgery: null,
+    femaleNote: "Menstrual health: cycles of 21–35 days are typical — seek care for soaking through protection hourly, severe pain disrupting daily life, or bleeding between periods. In pregnancy, seek prompt care for vaginal bleeding, severe headache or vision changes, sudden face/hand swelling, high fever, or reduced baby movements.",
     related: ["abdomen", "back-lower", "leg"],
     refs: HUBS,
   },
@@ -302,6 +306,7 @@ export const ORGANS: OrganOption[] = [
   { id: "liver", name: "Liver", regionId: "abdomen", view: "front" },
   { id: "stomach", name: "Stomach", regionId: "abdomen", view: "front" },
   { id: "kidneys", name: "Kidneys", regionId: "back-lower", view: "back" },
+  { id: "reproductive", name: "Reproductive", regionId: "pelvis", view: "front" },
 ];
 
 export function getRegion(id: string): BodyRegion | undefined {

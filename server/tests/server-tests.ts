@@ -309,7 +309,9 @@ async function main(): Promise<void> {
         (id) => BODY_SHAPES.some((s) => s.regionId === id && s.label.startsWith("Left")) && BODY_SHAPES.some((s) => s.regionId === id && s.label.startsWith("Right")),
       ),
     );
-    check("6 organs map to regions", ORGANS.length === 6 && ORGANS.every((o) => regionIds.has(o.regionId)));
+    check("7 organs map to regions", ORGANS.length === 7 && ORGANS.every((o) => regionIds.has(o.regionId)));
+    check("reproductive organ maps to pelvis", ORGANS.some((o) => o.id === "reproductive" && o.regionId === "pelvis"));
+    check("female health notes present", ["pelvis", "chest"].every((id) => (BODY_REGIONS.find((r) => r.id === id)?.femaleNote ?? "").length > 40));
     const tri = (regionId: string, symptoms: string[], severity: number, onset: "sudden" | "gradual") =>
       triageCheck({ regionId, regionName: regionId, symptoms, severity, onset, duration: "1–3 days" });
     check("triage: chest pain + breath → emergency", tri("chest", ["Chest pain or pressure", "Difficulty breathing or wheezing"], 8, "sudden").level === "emergency");
