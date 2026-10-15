@@ -82,6 +82,16 @@ server — login is validated server-side with bcrypt.
 - **Health Library / FAQ / Visit Prep** — searchable static education pages
   (specialties, tests, prevention, lifestyle, terminology in EN/HI/Hinglish),
   categorized FAQs, and appointment-preparation checklists.
+- **Medical Library** (`/medical-library`) — single merged library powered by the
+  same knowledge as the chatbot (shared `/api/knowledge/topics` API, no duplication)
+  plus the curated Health Library entries. Search with autocomplete (EN/HI/Hinglish),
+  category cards with verified Wikimedia Commons educational photos (attributed,
+  SVG-illustration fallback), A–Z browsing, category/type filters, full detail pages
+  with sections, references, related topics, and Ask-AI handoff. Old `/library`
+  redirects here.
+- **Navbar** — logo, Home, Book Appointment, My Appointments, AI Medical Chatbot,
+  Medicine Library, Symptom Checker, More ▼ (Emergency Help first, red urgency
+  styling), greeting, Logout; hamburger menu on smaller screens.
 - **Medicine Library** (`/medicines`) — separate encyclopedia-style section with 16
   curated entries (Paracetamol, Ibuprofen, Cetirizine, Amoxicillin, Azithromycin,
   Omeprazole, Metformin, Amlodipine, Losartan, Atorvastatin, Levothyroxine,

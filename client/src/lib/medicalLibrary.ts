@@ -88,6 +88,9 @@ const LEGACY_CATEGORY: Record<string, string> = {
 
 /** Newer topic categories normalized to display categories. */
 const CATEGORY_NORMALIZE: Record<string, string> = {
+  "General Health and Preventive Care": "General Health and Preventive Care",
+  "Medical Tests and Diagnostics": "Medical Tests and Diagnostics",
+  "First Aid and Emergency Care": "First Aid and Emergency Care",
   "Heart and Circulatory Health": "Heart and Circulatory System",
   "Brain and Nervous System": "Brain and Nervous System",
   "Kidney and Urinary Health": "Kidney and Urinary System",
@@ -158,6 +161,79 @@ export const SOURCE_URLS: Record<string, string> = {
   "Ministry of Health and Family Welfare, India": "https://mohfw.gov.in/",
 };
 
+export interface CategoryImage {
+  url: string;
+  alt: string;
+  credit: string;
+  page: string;
+}
+
+const FP = "https://commons.wikimedia.org/wiki/Special:FilePath";
+const CURID = "https://commons.wikimedia.org/?curid=";
+
+/**
+ * Verified Wikimedia Commons photos (all hotlink-permitted, attributed).
+ * Filenames confirmed via the Commons API; file pages linked for licensing.
+ * Categories without a verified photo use the original SVG illustration
+ * (automatic fallback also covers any failed load).
+ */
+export const CATEGORY_IMAGES: Record<string, CategoryImage> = {
+  "Heart and Circulatory System": {
+    url: `${FP}/Surface%20anatomy%20of%20the%20heart.svg?width=800`,
+    alt: "Diagram showing the heart's location in the human body",
+    credit: "Wikimedia Commons (see file page for license)",
+    page: `${CURID}6105738`,
+  },
+  "Respiratory System": {
+    url: `${FP}/Respiratory%20system%20complete%20en.svg?width=800`,
+    alt: "Educational diagram of the human respiratory system",
+    credit: "Wikimedia Commons (see file page for license)",
+    page: `${CURID}3945169`,
+  },
+  "Kidney and Urinary System": {
+    url: `${FP}/Kidney-numbered.png?width=800`,
+    alt: "Labeled cross-section diagram of a human kidney",
+    credit: "Wikimedia Commons, derived from Gray's Anatomy (see file page for license)",
+    page: `${CURID}702154`,
+  },
+  "Bones, Muscles and Joints": {
+    url: `${FP}/Human%20skeleton%20back%20en.svg?width=800`,
+    alt: "Diagram of the human skeleton, back view",
+    credit: "Wikimedia Commons, public domain user release (see file page)",
+    page: `${CURID}6936350`,
+  },
+  "Vaccination and Immunization": {
+    url: `${FP}/COVID-19%20Vaccination%20%2820210318-OC-LSC-0002%29.jpg?width=800`,
+    alt: "A vaccination injection being given into an upper arm",
+    credit: "U.S. Dept. of Agriculture (public domain) via Wikimedia Commons",
+    page: `${CURID}184924612`,
+  },
+  "Child and Adolescent Health": {
+    url: `${FP}/Newborn%20babies%20at%20St%20David%27s%20Hospital%2C%20Bangor%20%281543073%29.jpg?width=800`,
+    alt: "Newborn babies in a hospital ward",
+    credit: "Wikimedia Commons, CC BY-SA 4.0 (see file page)",
+    page: `${CURID}155871688`,
+  },
+  "Symptoms and Warning Signs": {
+    url: `${FP}/Thermometer%20Fever%2040.png?width=800`,
+    alt: "Thermometer showing a fever of 40 degrees Celsius",
+    credit: "Ian Furst via Wikimedia Commons, CC BY-SA 4.0 (see file page)",
+    page: `${CURID}77674230`,
+  },
+  "Medicines and Medication Safety": {
+    url: `${FP}/Pills%20in%20blister%20pack.jpg?width=800`,
+    alt: "Illustrative photo of tablets in a blister pack",
+    credit: "Wikimedia Commons (see file page for license)",
+    page: "https://commons.wikimedia.org/wiki/File:Pills_in_blister_pack.jpg",
+  },
+  "General Health and Preventive Care": {
+    url: `${FP}/Doctors%20stethoscope%201.jpg?width=800`,
+    alt: "A doctor's stethoscope",
+    credit: "Wikimedia Commons (see file page for license)",
+    page: `${CURID}4540865`,
+  },
+};
+
 export const POPULAR_IDS = [
   "fever",
   "stomach",
@@ -187,6 +263,42 @@ export function rememberTopic(id: string) {
   }
 }
 
+import { LIBRARY } from "../data/healthContent";
+
+/** Health Library (curated EN/HI/Hinglish entries) mapped into library topics. */
+const HL_CATEGORY: Record<string, string> = {
+  specialties: "General Health and Preventive Care",
+  tests: "Medical Tests and Diagnostics",
+  "first-aid": "First Aid and Emergency Care",
+  prevention: "General Health and Preventive Care",
+  lifestyle: "General Health and Preventive Care",
+  terms: "General Health and Preventive Care",
+};
+
+export function healthLibraryTopics(): LibTopic[] {
+  return LIBRARY.flatMap((c) =>
+    c.entries.map((e, i) => {
+      const keys = new Set<string>([
+        ...e.tags,
+        ...e.title.toLowerCase().split(/[^a-z\u0900-\u097f]+/).filter((w) => w.length > 2),
+        ...(e.hinglish ?? "").toLowerCase().split(/[^a-z\u0900-\u097f]+/).filter((w) => w.length > 3),
+      ]);
+      const body = [`**In English:** ${e.en}`]
+        .concat(e.hi ? [`**हिंदी में:** ${e.hi}`] : [])
+        .concat(e.hinglish ? [`**Hinglish mein:** ${e.hinglish}`] : [])
+        .join("\n\n");
+      return {
+        id: `hl-${c.id}-${i}`,
+        title: e.title,
+        category: HL_CATEGORY[c.id] ?? "General Health and Preventive Care",
+        keywords: [...keys],
+        body,
+        sources: [] as string[],
+      };
+    }),
+  );
+}
+
 let cache: LibTopic[] | null = null;
 
 export async function fetchTopics(): Promise<LibTopic[]> {
@@ -195,7 +307,8 @@ export async function fetchTopics(): Promise<LibTopic[]> {
   if (!res.ok) throw new Error(`Library unavailable (${res.status}). Please try again.`);
   const data = (await res.json()) as { topics?: LibTopic[] };
   if (!Array.isArray(data.topics)) throw new Error("Library returned an unexpected response.");
-  cache = data.topics;
+  // Single merged library: chatbot knowledge + curated Health Library entries.
+  cache = [...data.topics, ...healthLibraryTopics()];
   return cache;
 }
 

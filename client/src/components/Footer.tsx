@@ -28,7 +28,7 @@ export function Footer() {
         </div>
         <div className="footer-col">
           <h4>Learn</h4>
-          <Link to="/library">Health Library</Link>
+          <Link to="/medical-library">Medical Library</Link>
           <Link to="/tools">Health Tools</Link>
           <Link to="/faq">Health FAQ</Link>
           <Link to="/visit-prep">Visit Prep</Link>

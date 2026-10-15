@@ -113,6 +113,8 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
   display: flex; flex-direction: column;
 }
 .nav-drop-menu a { display: block; padding: 10px 14px; border-radius: 8px; }
+.nav-drop-menu a.emg-link { color: var(--brand-dark); font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.nav-drop-menu a.emg-link:hover { background: var(--brand-soft); color: var(--brand-dark); }
 /* Collapse the navbar on smaller laptops/tablets instead of squeezing links. */
 @media (max-width: 1360px) {
   .nav-links a, .nav-drop-btn { padding: 8px 9px; font-size: 0.88rem; }
@@ -385,6 +387,7 @@ h2 { font-size: 1.35rem; margin: 0 0 8px; }
 .med-body .btn { align-self: flex-start; margin-top: auto; }
 .med-hero { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; margin-bottom: 18px; }
 .med-hero-img { border-radius: 12px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 10; background: var(--brand-soft); }
+.med-hero-img-auto { border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: var(--brand-soft); align-self: start; }
 .med-para { color: var(--ink-soft); line-height: 1.65; font-size: 0.96rem; }
 .med-detail-grid { display: grid; grid-template-columns: 230px 1fr; gap: 16px; align-items: start; }
 .med-toc { position: sticky; top: 76px; padding: 18px 20px; }

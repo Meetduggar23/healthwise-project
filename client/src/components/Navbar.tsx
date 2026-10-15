@@ -3,8 +3,8 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import { useAdminAuth } from "./AdminAuthContext";
 
-const MORE_LINKS = [
-  { to: "/library", label: "Health Library" },
+const MORE_LINKS: { to: string; label: string; emergency?: boolean }[] = [
+  { to: "/emergency", label: "Emergency Help", emergency: true },
   { to: "/medical-library", label: "Medical Library" },
   { to: "/tools", label: "Health Tools" },
   { to: "/faq", label: "Health FAQ" },
@@ -102,7 +102,6 @@ export function Navbar() {
             </>
           )}
           <NavLink to="/chat" className={link} onClick={closeAll}>AI Medical Chatbot</NavLink>
-          <NavLink to="/emergency" className={link} onClick={closeAll}>Emergency Help</NavLink>
           <NavLink to="/medicines" className={link} onClick={closeAll}>Medicine Library</NavLink>
           <NavLink to="/symptom-checker" className={link} onClick={closeAll}>Symptom Checker</NavLink>
           <div className="nav-dropdown" ref={moreRef}>
@@ -118,7 +117,16 @@ export function Navbar() {
             {moreOpen && (
               <div className="nav-drop-menu">
                 {MORE_LINKS.map((l) => (
-                  <NavLink key={l.to} to={l.to} className={link} onClick={closeAll}>
+                  <NavLink
+                    key={l.to} to={l.to}
+                    className={({ isActive }) => `${link({ isActive })}${l.emergency ? " emg-link" : ""}`}
+                    onClick={closeAll}
+                  >
+                    {l.emergency && (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true">
+                        <path d="M12 5 V19 M5 12 H19" />
+                      </svg>
+                    )}
                     {l.label}
                   </NavLink>
                 ))}

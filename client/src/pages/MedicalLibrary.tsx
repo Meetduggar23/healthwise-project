@@ -12,6 +12,7 @@ import {
   type LibTopic,
 } from "../lib/medicalLibrary";
 import { CategoryArt } from "../components/CategoryArt";
+import { TopicImage } from "../components/TopicImage";
 
 const TYPES = ["All types", "Conditions", "Symptoms", "Tests & scans", "Medicines", "First aid & emergency"];
 
@@ -20,7 +21,7 @@ function TopicCard({ t }: { t: LibTopic }) {
   return (
     <Link to={`/medical-library/${t.id}`} className="card med-card" onClick={() => rememberTopic(t.id)}>
       <div className="med-img med-img-sm">
-        <CategoryArt category={cat} label={`${cat} illustration`} />
+        <TopicImage category={cat} label={`${cat} illustration`} />
       </div>
       <div className="med-body">
         <h3>{t.title}</h3>
@@ -169,12 +170,12 @@ export function MedicalLibrary() {
               <div className="cat-grid">
                 {categories.map((c) => (
                   <button key={c.name} className="card cat-card" onClick={() => setCategory(c.name)}>
-                    <div className="cat-art"><CategoryArt category={c.name} label={`${c.name} illustration`} /></div>
+                    <div className="cat-art"><TopicImage category={c.name} label={`${c.name} illustration`} /></div>
                     <div><strong>{c.name}</strong><div className="muted">{c.count} topics</div></div>
                   </button>
                 ))}
                 <Link to="/medicines" className="card cat-card">
-                  <div className="cat-art"><CategoryArt category="Medicines and Medication Safety" label="Medicines illustration" /></div>
+                    <div className="cat-art"><TopicImage category="Medicines and Medication Safety" label="Medicines illustration" /></div>
                   <div><strong>Medicine Library →</strong><div className="muted">Detailed medicine guides</div></div>
                 </Link>
               </div>

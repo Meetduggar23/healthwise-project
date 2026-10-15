@@ -222,8 +222,17 @@ async function main(): Promise<void> {
     const emgSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/data/healthContent.ts"), "utf8");
     check("emergency call button tel:112", emgSrc.includes("tel:112"));
     check("emergency call button tel:108", emgSrc.includes("tel:108"));
-    const libSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/HealthLibrary.tsx"), "utf8");
-    check("library page searchable", /value=\{query\}|onChange/i.test(libSrc) && libSrc.includes("LIBRARY"));
+    // Health Library was merged into the Medical Library (single library).
+    const appSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/App.tsx"), "utf8");
+    check("old /library redirects to Medical Library", appSrc.includes('path="/library"') && appSrc.includes('to="/medical-library"'));
+    check("duplicate HealthLibrary page removed", !fs.existsSync(path.resolve(process.cwd(), "../client/src/pages/HealthLibrary.tsx")));
+    const { healthLibraryTopics } = await import("../../client/src/lib/medicalLibrary.js");
+    const hlCount = healthLibraryTopics().length;
+    check("health entries merged into library", hlCount >= 30, `merged=${hlCount}`);
+    check(
+      "merged entries categorized",
+      healthLibraryTopics().every((t) => t.title && t.body.length > 20 && t.keywords.length > 0),
+    );
 
     const bmi = calcBmi(65, 170);
     check("BMI calculator works", bmi.bmi === 22.5 && bmi.category === "Healthy range", JSON.stringify(bmi));
@@ -366,6 +375,26 @@ async function main(): Promise<void> {
     check("library home: search+categories+az", /ml-q/.test(mlSrc) && /cat-grid/.test(mlSrc) && /A–Z/.test(mlSrc));
     const mtSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/MedicalTopic.tsx"), "utf8");
     check("topic page: toc+refs+ask-ai", /On this page/.test(mtSrc) && /References and sources/.test(mtSrc) && /Ask HealthWise AI about this topic/.test(mtSrc));
+
+    // ---- 13. navbar order + images ----
+    console.log("\n[13] Navbar + images");
+    const navSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/Navbar.tsx"), "utf8");
+    const order = ["/", "/book", "/appointments", "/chat", "/medicines", "/symptom-checker"];
+    const positions = order.map((p) => navSrc.indexOf(`to="${p}"`));
+    check("navbar order exact", positions.every((v) => v >= 0) && positions.every((v, i, a) => i === 0 || v > a[i - 1]), positions.join(","));
+    check("emergency first in More", /MORE_LINKS[\s\S]*?to: "\/emergency"[\s\S]*?to: "\/medical-library"/.test(navSrc));
+    check("emergency styled urgent", navSrc.includes("emg-link"));
+    check("old emergency direct link removed", !/\/emergency" className=\{link\} onClick=\{closeAll\}>Emergency Help/.test(navSrc));
+    const { CATEGORY_IMAGES } = await import("../../client/src/lib/medicalLibrary.js");
+    const imgs = Object.values(CATEGORY_IMAGES);
+    check("category photos present", imgs.length >= 8, `photos=${imgs.length}`);
+    check(
+      "photos licensed + attributed",
+      imgs.every((im) => /^https:\/\/commons\.wikimedia\.org\//.test(im.url) && im.alt.length > 10 && im.credit.length > 5 && /^https?:\/\//.test(im.page)),
+    );
+    check("no search thumbnails", imgs.every((im) => !/google|bing|thumbnail|hotlink|placeholder/i.test(im.url)));
+    const tiSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/components/TopicImage.tsx"), "utf8");
+    check("image fallback + lazy + alt", tiSrc.includes("onError") && tiSrc.includes("loading=\"lazy\"") && tiSrc.includes("alt="));
   } finally {
     // On Windows, kill() only stops the shell — terminate the whole tree
     // so no orphan server keeps holding the test port.

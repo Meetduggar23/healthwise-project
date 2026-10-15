@@ -8,7 +8,7 @@ import {
   parseSections,
   type LibTopic,
 } from "../lib/medicalLibrary";
-import { CategoryArt } from "../components/CategoryArt";
+import { TopicImage } from "../components/TopicImage";
 import { renderChatHtml } from "../components/chatMarkdown";
 
 export function MedicalTopic() {
@@ -70,8 +70,8 @@ export function MedicalTopic() {
       <Link to="/medical-library" className="btn btn-ghost btn-sm" style={{ marginBottom: 14 }}>← Medical Library</Link>
 
       <div className="card med-hero">
-        <div className="med-hero-img">
-          <CategoryArt category={cat} label={`${cat} illustration`} />
+        <div className="med-hero-img-auto">
+          <TopicImage category={cat} label={`${cat} illustration`} showCredit />
         </div>
         <div>
           <div className="chip-row">

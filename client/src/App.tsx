@@ -12,7 +12,6 @@ import { MyAppointments } from "./pages/MyAppointments";
 import { ChatPage } from "./pages/ChatPage";
 import { Emergency } from "./pages/Emergency";
 import { HealthTools } from "./pages/HealthTools";
-import { HealthLibrary } from "./pages/HealthLibrary";
 import { HealthFaq } from "./pages/HealthFaq";
 import { VisitPrep } from "./pages/VisitPrep";
 import { MedicineLibrary } from "./pages/MedicineLibrary";
@@ -37,7 +36,7 @@ export default function App() {
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/emergency" element={<Emergency />} />
             <Route path="/tools" element={<HealthTools />} />
-            <Route path="/library" element={<HealthLibrary />} />
+            <Route path="/library" element={<Navigate to="/medical-library" replace />} />
             <Route path="/faq" element={<HealthFaq />} />
             <Route path="/visit-prep" element={<VisitPrep />} />
             <Route path="/medicines" element={<MedicineLibrary />} />
