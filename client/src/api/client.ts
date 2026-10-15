@@ -49,6 +49,8 @@ export interface NewAppointment {
   reason: string;
 }
 
+export type LoginRole = "patient" | "admin";
+
 export const api = {
   me: () => request<{ user: User }>("/api/auth/me"),
   login: (email: string, password: string) =>
@@ -57,6 +59,14 @@ export const api = {
       body: JSON.stringify({ email, password }),
     }),
   logout: () => request<{ ok: boolean }>("/api/auth/logout", { method: "POST" }),
+
+  // Single login for BOTH accounts: patient credentials sign in as a patient,
+  // admin credentials sign in as an admin. The role tells the UI where to go.
+  unifiedLogin: (email: string, password: string) =>
+    request<{ user: User; role: LoginRole }>("/api/auth/unified", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    }),
 
   // Stateless chat: the client keeps history in localStorage and sends the
   // recent turns with each request. The AI key stays on the backend.

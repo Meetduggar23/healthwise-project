@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdminAuth } from "../components/AdminAuthContext";
+import { PasswordField } from "../components/PasswordField";
 
 export function AdminLogin() {
   const { login } = useAdminAuth();
@@ -35,7 +36,7 @@ export function AdminLogin() {
           <img className="auth-logo" src="/logo.png" alt="HealthWise" />
           <span className="admin-badge">Admin area</span>
           <h1>Admin login</h1>
-          <p className="sub">Sign in with the administrator account to manage all appointments.</p>
+          <p className="sub">Sign in with the administrator account to manage all appointments. (You can also use the main login page.)</p>
           {error && <div className="alert alert-error">{error}</div>}
           <form onSubmit={submit}>
             <div className="field">
@@ -45,13 +46,10 @@ export function AdminLogin() {
                 onChange={(e) => setEmail(e.target.value)} placeholder="admin@example.com"
               />
             </div>
-            <div className="field">
-              <label htmlFor="admin-password">Password</label>
-              <input
-                id="admin-password" type="password" value={password} autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)} placeholder="Admin password"
-              />
-            </div>
+            <PasswordField
+              id="admin-password" label="Password" value={password}
+              placeholder="Admin password" onChange={setPassword}
+            />
             <button className="btn" type="submit" disabled={busy} style={{ width: "100%" }}>
               {busy ? <span className="spinner" /> : "Login as Admin"}
             </button>

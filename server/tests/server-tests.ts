@@ -111,6 +111,21 @@ async function main(): Promise<void> {
     r = await admin.req("/api/admin/me");
     check("admin me works", r.status === 200, `status=${r.status}`);
 
+    // ---- 2b. unified login (one form, both accounts) ----
+    console.log("\n[2b] Unified login");
+    const uniPatient = new Jar();
+    r = await uniPatient.req("/api/auth/unified", { method: "POST", body: JSON.stringify({ email: "meetduggar@gmail.com", password: "meet2005" }) });
+    check("unified login: patient role", r.status === 200 && (r.body as { role?: string }).role === "patient", `status=${r.status}`);
+    r = await uniPatient.req("/api/appointments/mine");
+    check("unified patient session works", r.status === 200, `status=${r.status}`);
+    const uniAdmin = new Jar();
+    r = await uniAdmin.req("/api/auth/unified", { method: "POST", body: JSON.stringify({ email: "admin@healthwise.in", password: "meet2005" }) });
+    check("unified login: admin role", r.status === 200 && (r.body as { role?: string }).role === "admin", `status=${r.status}`);
+    r = await uniAdmin.req("/api/admin/me");
+    check("unified admin session works", r.status === 200, `status=${r.status}`);
+    r = await anon.req("/api/auth/unified", { method: "POST", body: JSON.stringify({ email: "nobody@example.com", password: "wrong" }) });
+    check("unified login rejects bad creds", r.status === 401, `status=${r.status}`);
+
     // ---- 3/4. route protection ----
     console.log("\n[3] Admin route protection");
     r = await anon.req("/api/admin/appointments");

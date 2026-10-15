@@ -20,6 +20,14 @@ const adminPasswordHash = bcrypt.hashSync(env.adminPassword, 10);
 
 const adminUser = { id: 1, name: env.adminName, email: env.adminEmail };
 
+/** Public admin profile (id/name/email only — never a secret). */
+export const adminProfile = { ...adminUser };
+
+/** Verifies admin credentials server-side (for reuse by the unified login). */
+export function verifyAdminCredentials(email: string, password: string): boolean {
+  return email === env.adminEmail && bcrypt.compareSync(password, adminPasswordHash);
+}
+
 const loginSchema = z.object({
   email: z.string().trim().toLowerCase().email("Please enter a valid email address."),
   password: z.string().min(1, "Please enter your password."),
@@ -32,9 +40,7 @@ adminRouter.post("/login", adminLoginLimiter, (req, res) => {
     return;
   }
   const { email, password } = parsed.data;
-  const emailOk = email === env.adminEmail;
-  const passwordOk = bcrypt.compareSync(password, adminPasswordHash);
-  if (!emailOk || !passwordOk) {
+  if (!verifyAdminCredentials(email, password)) {
     res.status(401).json({ error: "Invalid admin email or password." });
     return;
   }

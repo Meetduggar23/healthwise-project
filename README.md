@@ -18,20 +18,19 @@ npm run install:all   # install root + server + client dependencies
 npm run dev           # starts the API (http://localhost:4000) and the site (http://localhost:5173)
 ```
 
-Open **http://localhost:5173** and log in with the predefined demo account:
+Open **http://localhost:5173** and log in on the single login page — it accepts
+both accounts and routes each to the right place:
 
-- Email: `meetduggar@gmail.com`
-- Password: `meet2005`
+- Patient: `meetduggar@gmail.com` / `meet2005` → patient pages (Book, My Appointments).
+- Admin: `admin@healthwise.in` / `meet2005` → admin dashboard.
 
-(Change these via `DEMO_EMAIL` / `DEMO_PASSWORD` in `server/.env` — see Configuration.)
+(Change these via `DEMO_EMAIL` / `DEMO_PASSWORD` and `ADMIN_EMAIL` /
+`ADMIN_PASSWORD` in `server/.env` — see Configuration.)
 
-Admin dashboard (separate admin session, credentials never in frontend code):
-
-- URL: `http://localhost:5173/admin/login`
-- Email: `admin@healthwise.in`
-- Password: `meet2005`
-
-(Change these via `ADMIN_EMAIL` / `ADMIN_PASSWORD` in `server/.env`.)
+Notes: the login form has a show/hide password eye; the Sign Up button is
+UI-only and disabled in this demo (no self-registration). A dedicated admin
+login also exists at `http://localhost:5173/admin/login`. Admin sessions are
+separate from patient sessions, and credentials are never in frontend code.
 
 ## Configuration
 
@@ -132,7 +131,8 @@ NODE_ENV=production npm start   # serves the API and the built site on PORT
 ## Verified by testing
 
 Server integration (`server/tests/server-tests.ts`, run against a live test
-server — 39 checks): patient login/logout; admin login accepts only the
+server — 44 checks): patient login/logout; unified login returns the correct
+role for each account and rejects bad credentials; admin login accepts only the
 configured credentials (`admin@healthwise.in`); unauthenticated users get 401
 on admin APIs; patient accounts get 403 on admin routes; booking appears in the
 admin dashboard; duplicate/past-date rejected; cancel + admin status updates

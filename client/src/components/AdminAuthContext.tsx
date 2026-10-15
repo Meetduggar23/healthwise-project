@@ -6,6 +6,7 @@ interface AdminAuthState {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  refresh: () => Promise<void>;
 }
 
 const AdminAuthContext = createContext<AdminAuthState | null>(null);
@@ -30,9 +31,17 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
     await api.adminLogout();
     setAdmin(null);
   };
+  const refresh = async () => {
+    try {
+      const r = await api.adminMe();
+      setAdmin(r.user);
+    } catch {
+      setAdmin(null);
+    }
+  };
 
   return (
-    <AdminAuthContext.Provider value={{ admin, loading, login, logout }}>
+    <AdminAuthContext.Provider value={{ admin, loading, login, logout, refresh }}>
       {children}
     </AdminAuthContext.Provider>
   );

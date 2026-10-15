@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../api/client";
 import { useAuth } from "../components/AuthContext";
+import { useAdminAuth } from "../components/AdminAuthContext";
+import { PasswordField } from "../components/PasswordField";
 
 export function Login() {
-  const { login } = useAuth();
+  const { refresh: refreshUser } = useAuth();
+  const { refresh: refreshAdmin } = useAdminAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,8 +23,11 @@ export function Login() {
     }
     setBusy(true);
     try {
-      await login(email.trim(), password);
-      navigate("/appointments");
+      // One login for both accounts: admin email opens the admin dashboard,
+      // patient email opens the patient pages.
+      const r = await api.unifiedLogin(email.trim(), password);
+      await Promise.all([refreshUser(), refreshAdmin()]);
+      navigate(r.role === "admin" ? "/admin/dashboard" : "/appointments");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed. Please try again.");
     } finally {
@@ -44,17 +51,23 @@ export function Login() {
                 onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com"
               />
             </div>
-            <div className="field">
-              <label htmlFor="password">Password</label>
-              <input
-                id="password" type="password" value={password} autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)} placeholder="Your password"
-              />
-            </div>
+            <PasswordField
+              id="password" label="Password" value={password}
+              placeholder="Your password" onChange={setPassword}
+            />
             <button className="btn" type="submit" disabled={busy} style={{ width: "100%" }}>
               {busy ? <span className="spinner" /> : "Login"}
             </button>
           </form>
+          <div className="auth-alt">
+            <span>New to HealthWise?</span>
+            <button className="btn btn-outline" type="button" disabled title="Sign-ups are disabled in this demo">
+              Sign Up
+            </button>
+            <p className="sub" style={{ margin: "8px 0 0", fontSize: "0.8rem" }}>
+              Sign-ups are disabled in this college demo.
+            </p>
+          </div>
         </div>
       </div>
     </div>
