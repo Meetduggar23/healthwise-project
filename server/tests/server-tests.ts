@@ -8,6 +8,8 @@ import { spawn, spawnSync, type ChildProcess } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { calcAge, calcBmi, hydrationGuide } from "../../client/src/lib/healthCalc.js";
+import { MEDICINES, MEDICINE_CATEGORIES } from "../../client/src/data/medicines.js";
+import { MEDICINE_BRIEFS } from "../src/medicineBriefs.js";
 
 const PORT = 4101;
 const BASE = `http://127.0.0.1:${PORT}`;
@@ -240,6 +242,43 @@ async function main(): Promise<void> {
       hydErr = e instanceof Error ? e.message : "";
     }
     check("hydration validates inputs", hydErr.length > 0);
+
+    // ---- 9. medicine catalogue integrity + chatbot consistency ----
+    console.log("\n[9] Medicine library data");
+    check("catalogue has 16 entries", MEDICINES.length === 16, `got=${MEDICINES.length}`);
+    const medIds = MEDICINES.map((m) => m.id);
+    check("catalogue ids unique", new Set(medIds).size === medIds.length);
+    check(
+      "required fields present",
+      MEDICINES.every(
+        (m) =>
+          m.name && m.generic && m.brands.length > 0 && m.categories.length > 0 &&
+          m.forms.length > 0 && m.summary.length > 40 && m.uses.length > 0 &&
+          m.howItWorks.length > 20 && m.sideEffects.length > 0 &&
+          m.seriousWarnings.length > 0 && m.precautions.length > 0 &&
+          m.overdose.length > 20 && m.rx.length > 10 && m.refs.length > 0 &&
+          m.reviewed.length > 0 && m.keywords.length >= 3,
+      ),
+    );
+    check("no personalized dosages", !MEDICINES.some((m) => /take \d+\s*(tablet|mg|ml|drop|spoon|puff)|children[^.]*\d+\s*mg|\d+\s*mg\s*(twice|thrice)|every \d+\s*hours|\d+\s*mg\/kg/i.test([m.summary, m.howItWorks, ...m.safeUse, ...m.uses].join(" "))));
+    check("overdose mentions emergency number", MEDICINES.every((m) => m.overdose.includes("112")));
+    check("refs are https medical sources", MEDICINES.every((m) => m.refs.every((r) => /^https:\/\/(medlineplus\.gov|www\.nhs\.uk|www\.who\.int)/.test(r.url))));
+    check("images have alt + credit fallback", MEDICINES.every((m) => m.imageAlt.length > 5 && m.imageCredit.length > 5));
+    check("categories valid", MEDICINES.every((m) => m.categories.every((c) => MEDICINE_CATEGORIES.includes(c))));
+    const byId = new Map(MEDICINES.map((m) => [m.id, m]));
+    check(
+      "briefs match catalogue (id/name/generic)",
+      MEDICINE_BRIEFS.length === MEDICINES.length &&
+        MEDICINE_BRIEFS.every((b) => {
+          const m = byId.get(b.id);
+          return m !== undefined && m.name === b.name && m.generic === b.generic && b.path === `/medicines/${b.id}`;
+        }),
+      `briefs=${MEDICINE_BRIEFS.length}`,
+    );
+    const medLibSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/MedicineLibrary.tsx"), "utf8");
+    check("library page has search+filters+load-more", /suggest/i.test(medLibSrc) && /chip/i.test(medLibSrc) && /Load More/.test(medLibSrc));
+    const medDetSrc = fs.readFileSync(path.resolve(process.cwd(), "../client/src/pages/MedicineDetail.tsx"), "utf8");
+    check("detail page has TOC+refs+disclaimer", /On this page/.test(medDetSrc) && /References/.test(medDetSrc) && /not a prescription/.test(medDetSrc));
   } finally {
     // On Windows, kill() only stops the shell — terminate the whole tree
     // so no orphan server keeps holding the test port.

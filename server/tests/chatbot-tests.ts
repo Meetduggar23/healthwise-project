@@ -195,6 +195,19 @@ check("thanks", /welcome|koi baat/i.test(fallbackReply("thanks, shukriya")));
 check("topic answer has disclaimer", fallbackReply("I have fever").includes("not a doctor"));
 check("multi-topic joined", fallbackReply("PCOS aur thyroid mein kya difference hai?").includes("---"));
 
+// ---------- 11. Medicine recognition + library links ----------
+console.log("\n[11] Medicine recognition");
+import { findMedicineBriefs } from "../src/medicineBriefs.js";
+check("brief: paracetamol EN", findMedicineBriefs("Tell me about paracetamol uses").some((b) => b.id === "paracetamol"));
+check("brief: crocin brand", findMedicineBriefs("crocin kis kaam aati hai").some((b) => b.id === "paracetamol"));
+check("brief: misspelling", findMedicineBriefs("amoxycillin for throat infection").some((b) => b.id === "amoxicillin"));
+check("brief: inhaler Hinglish", findMedicineBriefs("dama pump kaise use karte hain").some((b) => b.id === "salbutamol-inhaler"));
+check("brief: no false positive", findMedicineBriefs("What is a balanced diet?").length === 0);
+const medReply = fallbackReply("Mujhe cetirizine ke baare me batao");
+check("reply names medicine + library path", medReply.includes("Cetirizine") && medReply.includes("/medicines/cetirizine"), medReply.slice(0, 100));
+check("reply has disclaimer", medReply.includes("not a doctor"));
+check("emergency beats medicine match", fallbackReply("severe chest pain after taking ibuprofen").includes("112") && isEmergency("severe chest pain after taking ibuprofen"));
+
 // ---------- Summary ----------
 console.log(`\n==== ${passed} passed, ${failed} failed, ${MEDICAL_KNOWLEDGE.length} topics total ====`);
 if (failures.length > 0) {

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { useChat } from "../components/useChat";
 import { Messages } from "../components/ChatWidget";
 
@@ -7,6 +7,18 @@ export function ChatPage() {
   const chat = useChat();
   const [draft, setDraft] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [params, setParams] = useSearchParams();
+  const askedRef = useRef(false);
+
+  // Deep link from the Medicine Library ("Ask AI about X"): auto-send ?q= once.
+  useEffect(() => {
+    const q = params.get("q");
+    if (q && !askedRef.current && !chat.sending && chat.messages.length === 0) {
+      askedRef.current = true;
+      chat.send(q);
+      setParams({}, { replace: true });
+    }
+  });
 
   return (
     <div className="page">

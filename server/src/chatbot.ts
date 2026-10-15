@@ -12,6 +12,7 @@ import {
   isEmergency,
   knowledgeContext,
 } from "./knowledge.js";
+import { findMedicineBriefs, medicineBriefBlock } from "./medicineBriefs.js";
 
 // Public endpoint: the chatbot is free to use without login. No personal
 // data is involved, abuse is curbed by rate limiting, and the AI provider
@@ -64,6 +65,14 @@ export function fallbackReply(text: string, priorUserTexts: string[] = []): stri
     }
   }
   // Multi-topic queries: ranked retrieval may return 2 topics; join both.
+  // Medicine names additionally pull shared Medicine Library briefs so the
+  // chatbot and the library stay consistent (same ids, names, safety lines).
+  const briefs = findMedicineBriefs(trimmed, 2);
+  if (briefs.length > 0) {
+    const briefBody = briefs.map(medicineBriefBlock).join("\n\n---\n\n");
+    const topicBody = topics.length > 0 ? `\n\n---\n\n${topics.map((t) => t.body).join("\n\n---\n\n")}` : "";
+    return `${briefBody}${topicBody}\n\n_${DISCLAIMER}_`;
+  }
   if (topics.length > 0) {
     const body = topics.map((t) => t.body).join("\n\n---\n\n");
     return `${body}\n\n_${DISCLAIMER}_`;
@@ -90,11 +99,16 @@ async function aiReply(history: ChatTurn[], userText: string): Promise<string | 
   const timer = setTimeout(() => controller.abort(), 30_000);
   try {
     // Ground the model with only the most relevant excerpts, not the whole KB.
+    // Matched Medicine Library briefs are appended (never the full catalogue).
     const historyUserTexts = history.filter((m) => m.role === "user").map((m) => m.content);
     const relevant = getRelevantTopics(userText, historyUserTexts.slice(0, -1), 4);
+    const briefs = findMedicineBriefs(userText, 2);
     const context = relevant.length > 0
       ? relevant.map((t) => `### ${t.title}\n${t.body}`).join("\n\n")
       : knowledgeContext();
+    const medContext = briefs.length > 0
+      ? `\n\n## Matched Medicine Library entries (briefs; direct the user to the library path for full details)\n${briefs.map((b) => `- ${b.name} (${b.generic}): ${b.summary} Safety: ${b.warning} Library: ${b.path}`).join("\n")}`
+      : "";
     const lang = detectLanguage(userText);
     const langNote =
       lang === "hi"
@@ -114,7 +128,7 @@ async function aiReply(history: ChatTurn[], userText: string): Promise<string | 
         temperature: 0.4,
         max_tokens: 700,
         messages: [
-          { role: "system", content: `${SYSTEM_PROMPT}\n\n## Reference knowledge (most relevant excerpts — do not present keyword matching as diagnosis)\n${context}\n\n## User language\n${langNote}` },
+          { role: "system", content: `${SYSTEM_PROMPT}\n\n## Reference knowledge (most relevant excerpts — do not present keyword matching as diagnosis)\n${context}${medContext}\n\n## User language\n${langNote}` },
           ...history.slice(-12).map((m) => ({ role: m.role, content: m.content })),
           { role: "user", content: userText },
         ],

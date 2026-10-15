@@ -102,6 +102,7 @@ export function Navbar() {
           )}
           <NavLink to="/chat" className={link} onClick={closeAll}>AI Medical Chatbot</NavLink>
           <NavLink to="/emergency" className={link} onClick={closeAll}>Emergency Help</NavLink>
+          <NavLink to="/medicines" className={link} onClick={closeAll}>Medicine Library</NavLink>
           <div className="nav-dropdown" ref={moreRef}>
             <button
               type="button"

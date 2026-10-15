@@ -82,6 +82,17 @@ server — login is validated server-side with bcrypt.
 - **Health Library / FAQ / Visit Prep** — searchable static education pages
   (specialties, tests, prevention, lifestyle, terminology in EN/HI/Hinglish),
   categorized FAQs, and appointment-preparation checklists.
+- **Medicine Library** (`/medicines`) — separate encyclopedia-style section with 16
+  curated entries (Paracetamol, Ibuprofen, Cetirizine, Amoxicillin, Azithromycin,
+  Omeprazole, Metformin, Amlodipine, Losartan, Atorvastatin, Levothyroxine,
+  Salbutamol inhaler, ORS, Vitamin D3, Iron+Folic Acid, Clotrimazole). Search with
+  suggestions (brand/generic/use), category filters, featured + recently viewed,
+  Load More, and full detail pages (uses, side effects, warnings, precautions,
+  interactions, pregnancy, overdose/112 guidance, Rx/OTC status, references,
+  review dates). Images are generic illustrative Wikimedia Commons photos with
+  attribution plus built-in fallback illustrations — never brand packaging. The
+  chatbot recognizes medicine names and links to detail pages; detail pages link
+  back via "Ask HealthWise AI". Educational only: no dosages, no prescriptions.
 - **Responsive UI** — desktop, tablet, and mobile layouts with the HealthWise logo.
 
 ## Project structure
@@ -91,10 +102,12 @@ healthwise-demo/
   client/                 # React + TypeScript (Vite)
     src/pages/            # Home, Login, BookAppointment, MyAppointments, ChatPage,
                           # Emergency, HealthTools, HealthLibrary, HealthFaq,
-                          # VisitPrep, AdminLogin, AdminDashboard
-    src/components/       # Navbar, AuthContext, AdminAuthContext, AdminRoute, ChatWidget, useChat, chatMarkdown
+                          # VisitPrep, AdminLogin, AdminDashboard,
+                          # MedicineLibrary, MedicineDetail
+    src/components/       # Navbar, Footer, AuthContext, AdminAuthContext, AdminRoute, ChatWidget, useChat, chatMarkdown, MedicineImage, PasswordField
     src/api/client.ts     # auth + chat + appointments + admin API calls
     src/data/healthContent.ts  # static emergency/library/FAQ/prep content
+    src/data/medicines.ts # static medicine catalogue (16 entries, no database)
     src/lib/healthCalc.ts # pure BMI/age/hydration functions
   server/                 # Express + TypeScript (no database)
     src/index.ts          # app wiring, session config
@@ -103,6 +116,7 @@ healthwise-demo/
     src/appointments.ts   # shared in-memory appointments (patient + admin routes)
     src/chatbot.ts        # public chat endpoint: POST /api/chat/message
     src/knowledge.ts      # chatbot system prompt + medical knowledge base
+    src/medicineBriefs.ts # shared medicine briefs linking chatbot to library
     tests/server-tests.ts # integration tests (run: npx tsx tests/server-tests.ts)
     tests/chatbot-tests.ts# knowledge/chatbot tests
 ```
