@@ -1,8 +1,12 @@
+
 <p align="center">
-  <img src="client/public/logo.png" width="180" />
+  <img src="client/public/logo.png" width="180" alt="HealthWise Logo" />
 </p>
 
-<h1 class="project-title">HealthWise - college project</h1>
+<h1 align="center">HealthWise - College Project</h1>
 
-A polished, professional healthcare website for a college project presentation:
-predefined login, appointment booking, and a working AI medical chatbot.
+<p align="center">
+  A polished and professional healthcare website developed for a college project presentation.
+  <br />
+  Features predefined login, appointment booking, and an AI-powered medical chatbot.
+</p>
